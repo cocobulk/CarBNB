@@ -29,13 +29,12 @@ class BookingsController < ApplicationController
     # @booking = Booking.find(params[:id])
   end
 
-
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
     redirect_to bookings_path
   end
-  
+
   # PATCH/PUT /booking/:id
   # Redirects to the booking show page.
   def update
@@ -47,7 +46,8 @@ class BookingsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
-   end
+    end
+  end
 
   private
 
