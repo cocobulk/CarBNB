@@ -5,15 +5,20 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @booking = Booking.new
-    # you need to give an empty shell to your form_with!
+    @car = Car.find(params[:car_id])
   end
 
   def create
-    @booking = Booking.new(bookings_params)
+    @booking = Booking.new(booking_params)
+    @booking.car = @car
     if @booking.save
-      redirect_to bookings_path(@bookings)
+      redirect_to car_path(@car)
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,8 +39,12 @@ class BookingsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
-      end
-    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to bookings_path
   end
 
   private

@@ -12,3 +12,4 @@ users = []
   puts "created user #{count + 1}, car #{count + 1}, and booking #{count + 1}"
 end
 puts "done"
+

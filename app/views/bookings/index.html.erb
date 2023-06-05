@@ -1,10 +1,14 @@
-<h1>Bookings index</h1>
-
+<h1>ALL BOOKING</h1>
 <% @bookings.each do |booking| %>
-<p>Booking</p>
-  <ul>
-    <li><%= booking.start_date %></li>
-    <li><%= booking.end_date %></li>
-    <li><%= link_to "Edit this booking", edit_booking_path(booking) %></li>
-  </ul>
+  <div>
+    <h2>Booking ID: <%= booking.id %></h2>
+    <p>Booking Name: <%= booking.name %></p>
+    <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
+    <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
+    <p>Customer: <%= booking.customer.name %></p>
+  </div>
 <% end %>
+
+<%= link_to 'Button', class: 'btn btn-primary' %>
+<%= button_to 'Delete', delete_booking_path(booking), method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' } %>
+
