@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_bookings, only: %i[ show edit update destroy ]
 
   def index
     @bookings = Booking.all
@@ -24,7 +25,22 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @booking = Booking.find(params[:id])
+    # placeholder for reference as to where view gets instance var.
+    # @booking = Booking.find(params[:id])
+  end
+
+  # PATCH/PUT /booking/:id
+  # Redirects to the booking show page.
+  def update
+    respond_to do |format|
+      if @booking.update(bookings_params)
+        format.html { redirect_to bookings_path(@booking), notice: "Booking was successfully updated." }
+        format.json { render :show, status: :ok, location: @booking }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

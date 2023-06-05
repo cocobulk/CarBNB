@@ -1,5 +1,11 @@
 <h1>Hello</h1>
 <% @cars.each do |car| %>
-
+<p>Car</p>
+  <ul>
+  <li><%= car.price %></li>
+    <li>
+    <%= car.availability %>
+    </li>
+  </ul>
 <% end %>
 <%# <%= link_to 'Button', '#', class: 'btn btn-primary' %>
