@@ -29,24 +29,22 @@ class BookingsController < ApplicationController
     # @booking = Booking.find(params[:id])
   end
 
+  # PATCH/PUT /booking/:id
+  # Redirects to the booking show page. bookings_url(@booking)
+  def update
+    respond_to do |format|
+      if @booking.update(bookings_params)
+        format.html { redirect_to @booking, notice: "Booking was successfully updated." }
+        format.json { render :show, status: :ok, location: @booking }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
+  end
+
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
     redirect_to bookings_path
-  end
-
-  # PATCH/PUT /booking/:id
-  # Redirects to the booking show page.
-  def update
-    respond_to do |format|
-      if @booking.update(bookings_params)
-        format.html { redirect_to bookings_path(@booking), notice: "Booking was successfully updated." }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   private
@@ -55,7 +53,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def booking_params
-    params.require(:bookings).permit(:start_date, :end_date, :confirmed)
+  def bookings_params
+    params.require(:booking).permit(:start_date, :end_date)
   end
 end
