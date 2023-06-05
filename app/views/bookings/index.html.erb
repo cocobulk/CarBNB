@@ -1,0 +1,10 @@
+<h1>Bookings index</h1>
+
+<% @bookings.each do |booking| %>
+<p>Booking</p>
+  <ul>
+    <li><%= booking.start_date %></li>
+    <li><%= booking.end_date %></li>
+    <li><%= link_to "Edit this booking", edit_booking_path(booking) %></li>
+  </ul>
+<% end %>

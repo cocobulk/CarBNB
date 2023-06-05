@@ -52,12 +52,17 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "devise"
-group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem "dotenv-rails"
-
-end
+# group :development, :test do
+#   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+#   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+#   gem "dotenv-rails"
+# end
+gem "dotenv-rails", groups: [:development, :production, :test]
+gem "cloudinary"
+gem 'open-uri', '~> 0.3.0'
+gem 'json', '~> 2.6', '>= 2.6.3'
+gem 'net-http', '~> 0.3.2'
+gem 'faker', '~> 2.18', '>= 2.18.2'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
