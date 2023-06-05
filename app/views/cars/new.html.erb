@@ -1,9 +1,8 @@
-<%= form_with model: @restaurant do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <%= f.label :rating %>
-  <%= f.number_field :rating %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-6 m-2">
+      <h1>Register your car for renting</h1>
+      <%= render 'form', car: @car %>
+    </div>
+  </div>
+</div>

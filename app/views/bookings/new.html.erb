@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>New booking</h2>
+  <p>Car: </p>
+  <% simple_form_for [@booking] do |f| %>
+    <%= f.input :name %>
+    <%= f.submit %>
+  <% end %>
+  <p>Price: <%= @car.price * (@booking.end_date - @booking.start_date).to_i %></p>
+  <% @booking.confirmed = true %>
+  <%= link_to 'Confirm',  car_path(@car) %>
+</div>

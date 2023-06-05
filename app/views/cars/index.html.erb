@@ -1,8 +1,13 @@
 <h1>CarBNB</h1>
 <% @cars.each do |car| %>
-
+<p>Car</p>
+  <ul>
+  <li><%= car.price %></li>
+    <li>
+    <%= car.availability %>
+    </li>
+  </ul>
 <% end %>
-
 
 
 <!DOCTYPE html>
