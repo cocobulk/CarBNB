@@ -5,15 +5,20 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @booking = Booking.new
-    # you need to give an empty shell to your form_with!
+    @car = Car.find(params[:car_id])
   end
 
   def create
-    @booking = Booking.new(bookings_params)
+    @booking = Booking.new(booking_params)
+    @booking.car = @car
     if @booking.save
-      redirect_to bookings_path(@bookings)
+      redirect_to car_path(@car)
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,7 +49,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def bookings_params
+  def booking_params
     params.require(:bookings).permit(:start_date, :end_date, :confirmed)
   end
 end
