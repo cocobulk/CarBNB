@@ -1,4 +1,4 @@
-<h1>Hello</h1>
+<h1>CarBNB</h1>
 <% @cars.each do |car| %>
 <p>Car</p>
   <ul>
@@ -8,4 +8,24 @@
     </li>
   </ul>
 <% end %>
-<%# <%= link_to 'Button', '#', class: 'btn btn-primary' %>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsFirstApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  </head>
+
+  <body>
+  <% @cars.each do |car| %>
+
+ <% end %>
+    <%= yield %>
+  </body>
+</html>
