@@ -15,8 +15,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(bookings_params)
+    @car = Car.find(params[:car_id])
     @booking.car = @car
+    @booking.user = current_user
+    @booking.confirmed = true
     if @booking.save
       redirect_to car_path(@car)
     else
@@ -34,10 +37,10 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(bookings_params)
-        redirect_to @booking, notice: "Booking was successfully updated."
+        format.html { redirect_to @booking, notice: "Booking was successfully updated." }
         format.json { render :show, status: :ok, location: @booking }
       else
-        render :edit, status: :unprocessable_entity
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
       end
     end

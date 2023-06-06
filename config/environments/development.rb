@@ -32,7 +32,7 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-  
+
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
@@ -60,6 +60,8 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+
+  config.active_storage.service = :cloudinary
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
