@@ -39,6 +39,8 @@ class BookingsController < ApplicationController
       else
         render :edit, status: :unprocessable_entity
         format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
+      end
+    end
   end
 
   def destroy
