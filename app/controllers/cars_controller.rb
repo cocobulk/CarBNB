@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     #@cars = Car.all
@@ -8,16 +9,19 @@ class CarsController < ApplicationController
   def show
     authorize @restaurant 
     @car = Car.find(params[:id])
+    # authorize @car # @dev Pundit >> models/policy/car_policy.rb
   end
 
   def new
     @car = Car.new
     # you need to give an empty shell to your form_with!
+    authorize @car # @dev Pundit >> models/policy/car_policy.rb
   end
 
   def create
     @car = Car.new(car_params)
     @car.user = current_user
+    authorize @car # @dev Pundit >> models/policy/car_policy.rb
     if @car.save
       redirect_to root_path
     else
@@ -41,6 +45,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car = Car.find(params[:id])
+    authorize @car # @dev Pundit >> models/policy/car_policy.rb
     @car.destroy
     redirect_to cars_path, status: :see_other
   end

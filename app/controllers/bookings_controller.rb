@@ -3,15 +3,19 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.all
+    #@bookings = policy_scope(Booking)
+    authorize @booking
   end
 
   def show
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def new
     @booking = Booking.new
     @car = Car.find(params[:car_id])
+    authorize @booking
   end
 
   def create
@@ -19,6 +23,7 @@ class BookingsController < ApplicationController
     @car = Car.find(params[:car_id])
     @booking.car = @car
     @booking.user = current_user
+    authorize @booking
     @booking.confirmed = true
     if @booking.save
       redirect_to car_path(@car)
@@ -44,12 +49,14 @@ class BookingsController < ApplicationController
         format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
       end
     end
+    authorize @booking
   end
 
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
     redirect_to bookings_path
+    authorize @booking
   end
 
   private

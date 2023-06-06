@@ -30,6 +30,11 @@
         </div>
         <%= f.submit "Save your car informations", class: "m-2 btn btn-primary rounded" %>
       <% end %>
+
+      <div>
+        <%= button_to 'Delete', @car, method: :delete if policy(@car).destroy? %>
+      </div>
     </div>
+
   </div>
 </div>

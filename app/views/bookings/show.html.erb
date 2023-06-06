@@ -1,10 +1,15 @@
 <div class="container">
   <h2>Booking</h2>
   <p>Car: <%= @booking.car.model %></p>
+  <%# <p><%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill %></p>
   <p>Start Date: <%= @booking.start_date %></p>
   <p>End Date: <%= @booking.end_date %></p>
-  <p>Price: <%= @booking.car.price * (@booking.end_date - @booking.start_date).to_i %></p>
+  <p>Price per day: <%= @booking.car.price %></p>
   <p>Confirmed: <%= @booking.confirmed %></p>
-  <%= link_to 'Back', bookings_path %>
-  <%= link_to 'Confirm', edit_booking_path(@booking) %>
+  <% if policy(@booking).index? %>
+    <%= link_to 'Back', bookings_path %>
+  <% end %>
+  <% if policy(@booking).edit? %>
+    <%= link_to 'Confirm', edit_booking_path(@booking) %>
+  <% end %>
 </div>
