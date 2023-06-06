@@ -4,9 +4,9 @@
     <h2>Booking ID: <%= booking.id %></h2>
     <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
     <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
-    <p>Customer: <%= booking.customer.name %></p>
+    <p>Customer: <%= booking.user.first_name %></p>
+    <%= button_to 'Delete', bookings_path, method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' } %>
   </div>
 <% end %>
 
-<%= link_to 'Button', class: 'btn btn-primary' %>
-<%= button_to 'Delete', delete_booking_path(booking), method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' } %>
+
