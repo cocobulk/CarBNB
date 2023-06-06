@@ -13,7 +13,12 @@
       <%= link_to "Back to Cars", root_path%>
     </div>
     <div class="btn btn-warning">
-      <%= link_to "Edit your Car", edit_car_path%>
+      <% if policy(@car).edit? %>
+        <%= link_to "Edit your Car", edit_car_path%>
+      <% end %>
+    </div>
+    <div class="btn btn-warning">
+      <%= link_to "Book this Car", new_car_booking_path(@car)%>
     </div>
   </div>
 </div>
