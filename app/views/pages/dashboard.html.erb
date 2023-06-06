@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-between mt-5">
+        <h1>Your Cars to Rent</h1>
+        <%= link_to "New car", new_car_path, class: "btn btn-flat"  %>
+      </div>
+      <div class="row">
+        <% @cars.each do |car| %>
+          <div class="card-product">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <h2> <%= car.model %> </h2>
+              <p> <%= car.availability %> Product description with <strong>relevant info</strong> only.</p>
+            </div>
+          </div>
+          <div class="btn btn-info">
+              <%= link_to "Show this car", car %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="d-flex align-center mt-5">
+        <h1>Your Bookings</h1>
+      </div>
+      <div class="row">
+        <% @bookings.each do |car| %>
+          <div class="col m-3">
+            <%= car.model %>
+            <%= car.availability %>
+          <div class="btn btn-info">
+            <%= link_to "Show this car", car %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
