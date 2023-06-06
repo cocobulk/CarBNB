@@ -14,7 +14,7 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(cars_params)
+    @car = Car.new(car_params)
     if @car.save
       redirect_to cars_path(@cars)
     else
@@ -28,7 +28,7 @@ class CarsController < ApplicationController
 
   def update
     @car = Car.find(params[:id])
-    if @car.update(cars_params)
+    if @car.update(car_params)
       redirect_to cars_path(cars)
     else
       render :edit, status: :unprocessable_entity
@@ -38,7 +38,7 @@ class CarsController < ApplicationController
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
-    redirect_to carss_path, status: :see_other
+    redirect_to cars_path, status: :see_other
   end
 
 private
@@ -47,7 +47,8 @@ private
     @car = Car.find(params[:id])
   end
 
-  def cars_params
-    params.require(:car).permit(:model, :year, :seats_number, :price, :availability, :photo)
+
+  def car_params
+    params.require(:car).permit(:model, :year, :seats_number, :price, :availability)
   end
 end

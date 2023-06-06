@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: [:index, :show, :edit, :update, :destroy]
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
