@@ -1,11 +1,13 @@
-<h1>ALL BOOKING</h1>
-<% @bookings.each do |booking| %>
-  <div>
-    <h2>Booking ID: <%= booking.id %></h2>
-    <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
-    <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
-    <p>Customer: <%= booking.user.first_name %></p>
-    <%= link_to "See this booking", booking, class: "btn btn-primary mt-3" %>
-    <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' }, class: "btn btn-danger mt-3" %>
-  </div>
-<% end %>
+<div class="container">
+  <h1>ALL BOOKINGS</h1>
+  <% @bookings.each do |booking| %>
+    <div class="mb-3 border-bottom shadow-sm p-3">
+      <h2>Booking ID: <%= booking.id %></h2>
+      <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
+      <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
+      <p>Customer: <%= booking.user.first_name %></p>
+      <%= link_to "See this booking", booking, class: "btn btn-primary mt-3" %>
+      <%= button_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' }, class: "btn btn-danger mt-3" %>
+    </div>
+  <% end %>
+</div>

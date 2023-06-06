@@ -34,10 +34,10 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(bookings_params)
-        redirect_to @booking, notice: "Booking was successfully updated."
+        format.html { redirect_to @booking, notice: "Booking was successfully updated." }
         format.json { render :show, status: :ok, location: @booking }
       else
-        render :edit, status: :unprocessable_entity
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
       end
     end
