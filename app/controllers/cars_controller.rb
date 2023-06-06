@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :root_path
 
   def index
     #@cars = Car.all
