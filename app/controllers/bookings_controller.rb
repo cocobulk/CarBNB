@@ -3,8 +3,8 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.all
-    #@bookings = policy_scope(Booking)
-    authorize @booking
+    @bookings = policy_scope(Booking)
+    #authorize @bookings
   end
 
   def show

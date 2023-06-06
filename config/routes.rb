@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index, :show, :edit, :update, :destroy]
 
-  get "dashboard", to: "pages#dashboard"
+  get "dashboard", to: "pages#dashboard" do
+    resources :cars, only: [:show, :edit, :destroy]
+  end
 
   # Defines the root path route ("/")
   # root "articles#index"

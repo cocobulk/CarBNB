@@ -1,25 +1,16 @@
 <div class="container">
   <div class="row">
-      <h1>Cars available</h1>
-      <div class="btn btn-dark col-10 ">
-        <% if policy(@cars).new? %>
-          <%= link_to "New car", new_car_path %>
-        <% end %>
+    <h1>Cars available</h1>
+    <% @cars.each do |car| %>
+      <div class="col m-3">
+        <%= car.model %>
+        <%= car.year%>
+        <%= car.availability %>
+        <%= car.price %>
+        <div class="btn btn-info">
+          <%= link_to "Show this car", car %>
+        </div>
       </div>
-        <% @cars.each do |car| %>
-          <div class="col m-3">
-            <%= car.model %>
-            <%= car.year%>
-            <%= car.availability %>
-            <%= car.price %>
-            <div class="btn btn-info">
-              <%= link_to "Show this car", car %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-    </div>
-    <%= link_to "New car", new_car_path %>
+    <% end %>
   </div>
 </div>
