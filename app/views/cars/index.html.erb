@@ -2,7 +2,9 @@
   <div class="row">
       <h1>Cars available</h1>
       <div class="btn btn-dark col-10 ">
-        <%= link_to "New car", new_car_path %>
+        <% if policy(car).new? %>
+          <%= link_to "New car", new_car_path %>
+        <% end %>
       </div>
         <% @cars.each do |car| %>
           <div class="col m-3">

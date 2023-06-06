@@ -9,11 +9,18 @@
     </div>
   </div>
   <div class="col">
+    <% if policy(@car).edit? %>
     <div class="btn btn-info">
       <%= link_to "Back to Cars", root_path%>
     </div>
     <div class="btn btn-warning">
       <%= link_to "Edit your Car", edit_car_path%>
     </div>
+    <% else %>
+      <p>You are not authorized to edit this car.</p>
+      <div class="btn btn-info">
+        <%= link_to "Back to Cars", root_path %>
+      </div>
+    <% end %>
   </div>
 </div>

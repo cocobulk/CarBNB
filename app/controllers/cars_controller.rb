@@ -6,6 +6,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    authorize @restaurant 
     @car = Car.find(params[:id])
   end
 
@@ -26,6 +27,7 @@ class CarsController < ApplicationController
 
   def edit
     @car = Car.find(params[:id])
+    authorize @car
   end
 
   def update
