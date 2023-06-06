@@ -10,6 +10,10 @@ class CarPolicy < ApplicationPolicy
     true
   end
 
+  def showmycar?
+    true
+  end
+
   # @dev Anyone can create (rent) their car.
   def new?
     create?

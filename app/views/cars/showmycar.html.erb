@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mb-4">
     <div class="col-12 text-start">
-      <%= link_to "Back to list of cars", root_path %>
+      <%= link_to "Back to my cars", dashboard_path %>
     </div>
   </div>
   <div class="row shadow p-3 mb-5 bg-body rounded">
@@ -9,7 +9,7 @@
       <h1 class="display-4 text-start mb-4 fw-bold fs-5 text-start"><%= @car.model %></h1>
     </div>
     <div class="col-3 text-end">
-      <%= link_to "Book this car", new_car_booking_path(@car), class: "btn btn-flat mb-2" %>
+      <%= link_to "Edit informations about my car", edit_car_path, class: "btn btn-flat mb-2" %>
     </div>
     <p class="col-2"> Price : <%= @car.price %></p>
     <p class="col-2"> Seats : <%= @car.seats_number %></p>

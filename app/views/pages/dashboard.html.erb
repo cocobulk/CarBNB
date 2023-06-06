@@ -1,40 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <div class="d-flex justify-content-between mt-5">
-        <h1>Your Cars to Rent</h1>
-        <%= link_to "New car", new_car_path, class: "btn btn-flat"  %>
-      </div>
-      <div class="row">
-        <% @cars.each do |car| %>
-          <div class="card-product">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-            <div class="card-product-infos">
-              <h2> <%= car.model %> </h2>
-              <p> <%= car.availability %> Product description with <strong>relevant info</strong> only.</p>
+    <div class="col-6">
+      <h1 class="display-4 text-start mb-4">My Cars to Rent</h1>
+    </div>
+    <div class="col-6 text-end">
+      <%= link_to "New car", new_car_path, class: "btn btn-flat mb-2" %>
+    </div>
+  </div>
+  <div class="row">
+    <% @cars.each do |car| %>
+      <div class="col-md-6 mb-4">
+        <a href="<%= show_my_car_url(car) %>" class="card-link">
+          <div class="card">
+            <img src="<%= asset_path('voiture.png') %>" alt="Car Photo" class="card-image">
+            <div class="card-body">
+              <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= car.model %></h3>
+              <div class="d-flex justify-content-between">
+                <p class="card-price"><%= car.seats_number %> Seats</p>
+                <p class="card-price">$<%= car.price %></p>
+              </div>
             </div>
           </div>
-          <div class="btn btn-info">
-              <%= link_to "Show this car", car %>
-          </div>
-        <% end %>
+        </a>
       </div>
-    </div>
-    <div class="col">
-      <div class="d-flex align-center mt-5">
-        <h1>Your Bookings</h1>
-      </div>
-      <div class="row">
-        <% @bookings.each do |booking| %>
-          <div class="col m-3">
-            <%= booking.car.model %>
-            <%= booking.start_date %>
-            <%= booking.end_date %>
-            <div class="btn btn-info">
-              <%= link_to "Show this booking", booking %>
-            </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

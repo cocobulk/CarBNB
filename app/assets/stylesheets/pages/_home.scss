@@ -1,1 +1,15 @@
 // Specific CSS for your home-page
+// _home.scss
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+
+@media (max-width: 576px) {
+  .card {
+    margin-bottom: 20px;
+  }
+}

@@ -1,12 +1,34 @@
-.navbar-lewagon {
+.navbar {
+  background-color: #25c2ba;
+  color: #ecf5f5;
   justify-content: space-between;
-  background: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  height: 70px;
+  line-height: 70px;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-brand {
+  color: #ecf5f5;
+}
+
+.navbar-nav .nav-link {
+  color: #ecf5f5;
+}
+
+.navbar-nav .nav-link:hover {
+  color: $darkblue
+}
+
+.navbar-toggler-icon {
+  color: #ecf5f5;
+}
+
+.navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+
+.logo-image {
+  width: 100px; /* Adjust the size as per your preference */
+  border-radius: 8px;
 }

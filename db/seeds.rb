@@ -1,6 +1,12 @@
 require "faker"
 require "open-uri"
 
+puts "deleting existing data"
+Booking.destroy_all
+Car.destroy_all
+User.destroy_all
+puts "done deleting existing data"
+
 puts "creating ten users, cars, and bookings"
 
 bookings = []
@@ -22,3 +28,4 @@ cars.each do |car|
   puts "added photo to car #{car.id}"
 end
 puts "done adding photos to cars"
+

@@ -12,6 +12,11 @@ class CarsController < ApplicationController
     # authorize @car # @dev Pundit >> models/policy/car_policy.rb
   end
 
+  def showmycar
+    @car = Car.find(params[:id])
+    authorize @car
+  end
+
   def new
     @car = Car.new
     # you need to give an empty shell to your form_with!
