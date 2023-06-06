@@ -2,7 +2,25 @@
   <div class="row">
     <div class="col-6 m-2">
       <h1>Register your car for renting</h1>
-      <%= render 'form', car: @car %>
+      <%= simple_form_for [@car] do |f| %>
+        <div class="m-2">
+          <label for="ModelInput" class="form-label">🚘 Car Model </label>
+          <%= f.input :model, as: :string, input_html: { class: "form-control", id: "ModelInput", placeholder: "Opel Corsa" }, label: false %>
+        </div>
+        <div class="m-2">
+          <label for="YearInput">📅 Year of registration </label>
+          <%= f.input :year, as: :integer, input_html: { class: "form-control", id: "YearInput", placeholder: "2012"}, label: false %>
+        </div>
+        <div class="m-2">
+        <label for="PriceInput">💰 Daily price</label>
+        <%= f.input :price, as: :integer, input_html: { class: "form-control", id: "PriceInput", placeholder: "80"}, label: false%>
+        </div>
+        <div class="m-2">
+          <label for="SeatsInput">💺 Number of seats in the car</label>
+          <%= f.input :seats_number, as: :integer, input_html: { class: "form-control", id: "SeatsInput", placeholder: "4"}, label: false%>
+        </div>
+        <%= f.submit "Register your car", class: "m-2 btn btn-primary rounded" %>
+      <% end %>
     </div>
   </div>
 </div>

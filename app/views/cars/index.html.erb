@@ -1,19 +1,23 @@
-.container
+<div class="container">
+  <div class="row">
+      <h1>Cars available</h1>
+      <div class="btn btn-dark col-10 ">
+        <%= link_to "New car", new_car_path %>
+      </div>
+        <% @cars.each do |car| %>
+          <div class="col m-3">
+            <%= car.model %>
+            <%= car.year%>
+            <%= car.availability %>
+            <%= car.price %>
+            <div class="btn btn-info">
+              <%= link_to "Show this car", car %>
+            </div>
+          </div>
+        <% end %>
+      </div>
 
-<h1>Cars</h1>
-
-<div id="cars">
-  <% @cars.each do |car| %>
-    <%=  car.model %>
-    <%=  car.year%>
-    <%=  car.availability %>
-    <%=  car.price %>
-    <p>
-      <%= link_to "Show this car", car %>
-
-
-    </p>
-  <% end %>
+    </div>
+    <%= link_to "New car", new_car_path %>
+  </div>
 </div>
-
-<%= link_to "New car", new_car_path %>
