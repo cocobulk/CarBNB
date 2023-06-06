@@ -1,7 +1,8 @@
 class CarsController < ApplicationController
 
   def index
-    @cars = Car.all
+    #@cars = Car.all
+    @cars = policy_scope(Car)
   end
 
   def show
@@ -15,7 +16,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.user_id = 1
+    @car.user = current_user
     if @car.save
       redirect_to root_path
     else
