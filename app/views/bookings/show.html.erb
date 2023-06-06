@@ -6,10 +6,6 @@
   <p>End Date: <%= @booking.end_date %></p>
   <p>Price per day: <%= @booking.car.price %></p>
   <p>Confirmed: <%= @booking.confirmed %></p>
-  <% if policy(@booking).index? %>
-    <%= link_to 'Back', bookings_path %>
-  <% end %>
-  <% if policy(@booking).edit? %>
-    <%= link_to 'Confirm', edit_booking_path(@booking) %>
-  <% end %>
+  <%= link_to 'Back', bookings_path %>
+  <%= link_to 'Edit', edit_booking_path(@booking) %>
 </div>

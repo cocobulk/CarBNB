@@ -11,7 +11,7 @@
   <div class="col">
     <% if policy(@car).edit? %>
     <div class="btn btn-info">
-      <%= link_to "Back to Cars", root_path%>
+      <%= link_to "Back to Dashboard", dashboard_path%>
     </div>
 
     <div class="btn btn-warning">
@@ -19,14 +19,14 @@
         <%= link_to "Edit your Car", edit_car_path%>
       <% end %>
     </div>
-    <div class="btn btn-warning">
-      <%= link_to "Book this Car", new_car_booking_path(@car)%>
-    </div>
     <% else %>
       <p>You are not authorized to edit this car.</p>
       <div class="btn btn-info">
         <%= link_to "Back to Cars", root_path %>
       </div>
+      <div class="btn btn-warning">
+      <%= link_to "Book this Car", new_car_booking_path(@car)%>
+    </div>
     <% end %>
   </div>
 </div>

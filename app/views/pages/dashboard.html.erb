@@ -25,13 +25,14 @@
         <h1>Your Bookings</h1>
       </div>
       <div class="row">
-        <% @bookings.each do |car| %>
+        <% @bookings.each do |booking| %>
           <div class="col m-3">
-            <%= car.model %>
-            <%= car.availability %>
-          <div class="btn btn-info">
-            <%= link_to "Show this car", car %>
-          </div>
+            <%= booking.car.model %>
+            <%= booking.start_date %>
+            <%= booking.end_date %>
+            <div class="btn btn-info">
+              <%= link_to "Show this booking", booking %>
+            </div>
         <% end %>
       </div>
     </div>
