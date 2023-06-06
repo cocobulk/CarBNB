@@ -7,8 +7,9 @@ class CarsController < ApplicationController
   end
 
   def show
-    authorize @restaurant 
+
     @car = Car.find(params[:id])
+    authorize @car
     # authorize @car # @dev Pundit >> models/policy/car_policy.rb
   end
 

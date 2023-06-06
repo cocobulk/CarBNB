@@ -2,7 +2,7 @@
   <div class="row">
       <h1>Cars available</h1>
       <div class="btn btn-dark col-10 ">
-        <% if policy(car).new? %>
+        <% if policy(@cars).new? %>
           <%= link_to "New car", new_car_path %>
         <% end %>
       </div>
