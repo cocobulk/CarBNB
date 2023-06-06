@@ -40,15 +40,17 @@ class BookingsController < ApplicationController
   # PATCH/PUT /booking/:id
   # Redirects to the booking show page. bookings_url(@booking)
   def update
-    respond_to do |format|
-      if @booking.update(bookings_params)
-        format.html { redirect_to @booking, notice: "Booking was successfully updated." }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
-      end
+    # respond_to do |format|
+    if @booking.update(bookings_params)
+      redirect_to bookings_url(@booking), notice: "Booking was successfully updated."
+      # format.html { redirect_to @booking, notice: "Booking was successfully updated." }
+      # format.json { render :show, status: :ok, location: @booking }
+    else
+      render :edit, status: :unprocessable_entity
+      # format.html { render :edit, status: :unprocessable_entity }
+      # format.json { render json: @booking.errors, status: :unprocessable_entity, alert: "Booking was not updated." }
     end
+    # end
     authorize @booking
   end
 
