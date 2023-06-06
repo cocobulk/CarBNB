@@ -1,31 +1,19 @@
-<h1>CarBNB</h1>
-<% @cars.each do |car| %>
-<p>Car</p>
-  <ul>
-  <li><%= car.price %></li>
-    <li>
-    <%= car.availability %>
-    </li>
-  </ul>
-<% end %>
+.container
 
+<h1>Cars</h1>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>RailsFirstApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-
-  </head>
-
-  <body>
+<div id="cars">
   <% @cars.each do |car| %>
+    <%=  car.model %>
+    <%=  car.year%>
+    <%=  car.availability %>
+    <%=  car.price %>
+    <p>
+      <%= link_to "Show this car", car %>
 
- <% end %>
-    <%= yield %>
-  </body>
-</html>
+
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New car", new_car_path %>
