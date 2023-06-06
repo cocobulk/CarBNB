@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :root_path
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     #@cars = Car.all
@@ -42,6 +42,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car = Car.find(params[:id])
+    authorize @car # @dev Pundit >> models/policy/car_policy.rb
     @car.destroy
     redirect_to cars_path, status: :see_other
   end
