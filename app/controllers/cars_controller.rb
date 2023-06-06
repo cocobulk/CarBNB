@@ -47,6 +47,7 @@ private
     @car = Car.find(params[:id])
   end
 
+
   def car_params
     params.require(:car).permit(:model, :year, :seats_number, :price, :availability)
   end
