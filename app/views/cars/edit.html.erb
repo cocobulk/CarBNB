@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col m-2">
       <h1>Edit informations about your car </h1>
+      <% if policy(@car).edit? %>
       <%= simple_form_for [@car] do |f| %>
         <div class="m-2">
           <label for="UserInput" class="form-label">User ID </label>

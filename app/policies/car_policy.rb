@@ -6,6 +6,9 @@ class CarPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    true
+  end
 
   # @dev Anyone can create (rent) their car.
   def new?
@@ -28,5 +31,4 @@ class CarPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
-
 end

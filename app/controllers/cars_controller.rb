@@ -7,6 +7,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    authorize @restaurant 
     @car = Car.find(params[:id])
     # authorize @car # @dev Pundit >> models/policy/car_policy.rb
   end
@@ -30,7 +31,7 @@ class CarsController < ApplicationController
 
   def edit
     @car = Car.find(params[:id])
-    authorize @car # @dev Pundit >> models/policy/car_policy.rb
+    authorize @car
   end
 
   def update
