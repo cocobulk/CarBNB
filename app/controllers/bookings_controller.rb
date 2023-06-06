@@ -15,8 +15,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(bookings_params)
+    @car = Car.find(params[:car_id])
     @booking.car = @car
+    @booking.user = current_user
+    @booking.confirmed = true
     if @booking.save
       redirect_to car_path(@car)
     else
