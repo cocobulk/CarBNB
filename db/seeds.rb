@@ -1,4 +1,5 @@
 require "faker"
+require "open-uri"
 
 puts "creating ten users, cars, and bookings"
 
@@ -13,4 +14,10 @@ users = []
 end
 puts "done"
 
-
+puts "adding photos to cars"
+cars.each do |car|
+  img_url = Faker::LoremFlickr.image(size: "250x260", search_terms: ["cars"])
+  file = URI.open(img_url)
+  car.photo.attach(io: file, filename: "car.png", content_type: "image/png")
+end
+puts "done adding photos to cars"
