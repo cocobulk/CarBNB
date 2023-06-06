@@ -12,8 +12,11 @@
     <div class="btn btn-info">
       <%= link_to "Back to Cars", root_path%>
     </div>
-    <div class="btn btn-warning">
-      <%= link_to "Edit your Car", edit_car_path%>
-    </div>
+    <% if policy(@car).edit? %>
+       <div class="btn btn-warning">
+          <%= link_to "Edit your Car", edit_car_path%>
+        </div>
+    <% end %>
+
   </div>
 </div>

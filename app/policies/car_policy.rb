@@ -6,7 +6,7 @@ class CarPolicy < ApplicationPolicy
     end
   end
 
- 
+
   # @dev Anyone can create (rent) their car.
   def new?
     create?
