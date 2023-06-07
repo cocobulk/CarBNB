@@ -4,6 +4,11 @@
       <h1>Edit informations about your car </h1>
       <% if policy(@car).edit? %>
         <%= simple_form_for [@car] do |f| %>
+        <% @car.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+         <%= f.error_notification %>
+         <%= f.error_notification messages: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
           <div class="m-2">
             <label for="UserInput" class="form-label">User ID </label>
             <%= f.input :user_id, as: :integer, input_html: { class: "form-control", id: "UserInput", placeholder: "5" }, label: false %>
@@ -34,7 +39,7 @@
                 <% end %>
               </div>
             <% end %>
-            <%= f.file_field :photos, multiple: true, direct_upload: true, input_html: { required: true }, validate: true %>
+            <%= f.file_field :photos, multiple: true, direct_upload: true, input_html: { class: "form-control", required: true }, error: 'At least one photo is required.'  %>
           </div>
 
           <div class="m-2">
