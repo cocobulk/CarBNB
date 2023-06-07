@@ -24,21 +24,21 @@
       </div>
     </form>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row justify-content-between">
-        <% @cars.each do |car| %>
-          <div class="col-md-6 mb-4">
-            <a href="<%= car_path(car) %>" class="card-link">
-              <div class="card">
-                <%= cl_image_tag(car.photos[0].key, class: "card-img-top rounded", height: 200, width: 400, crop: :fit) if car.photos.present? %>
-                <div class="card-body">
-                  <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= car.model %></h3>
-                  <div class="d-flex justify-content-between">
-                    <p class="card-price"><%= car.seats_number %> Seats</p>
-                    <p class="card-price">$<%= car.price %></p>
-                  </div>
-                </div>
+  <div class="row justify-content-between">
+    <div class="col-12">
+      <h1 class="display-4 text-center mb-4">Cars available near you</h1>
+    </div>
+    <% @cars.each do |car| %>
+      <div class="col-md-3 mb-4">
+        <a href="<%= car_path(car) %>" class="card-link">
+          <div class="card overflow-hidden">
+            <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
+            <%= cl_image_tag(car.photos[0].key, class:"card-img-top rounded", height: 300, width: 400, crop: :fit) if car.photos.present?%>
+            <div class="card-body">
+              <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= car.model %></h3>
+              <div class="d-flex justify-content-between">
+                <p class="card-price"><%= car.seats_number %> Seats</p>
+                <p class="card-price">$<%= car.price %></p>
               </div>
             </a>
           </div>
