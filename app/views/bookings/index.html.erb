@@ -1,15 +1,16 @@
 <div class="container">
-  <h1>ALL BOOKINGS</h1>
-  <% @bookings.each do |booking| %>
-    <div class="mb-3 border-bottom shadow-sm p-3">
-      <h2>Booking ID: <%= booking.id %></h2>
-      <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
-      <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
-      <p>Customer: <%= booking.user.first_name %></p>
+  <div class="row">
+    <h1>My Bookings</h1>
+    <% @bookings.each do |booking| %>
       <% if policy(booking).show? %>
-        <%= link_to "See this booking", booking, class: "btn btn-primary mt-3" %>
+        <div class="mb-3 border-bottom shadow-sm p-3">
+        <h2>Booking ID: <%= booking.id %></h2>
+        <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
+        <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
+        <p>Customer: <%= booking.user.first_name %></p>
+        <%= link_to "See this booking", booking, class: "btn btn-primary mt-3 mb-3" %>
       <% end %>
-      <%= button_to 'Delete', booking, method: :delete if policy(booking).destroy? %>
-    </div>
-  <% end %>
+      <%= button_to 'Cancel', booking, method: :delete if policy(booking).destroy? %>
+    <% end %>
+  </div>
 </div>
