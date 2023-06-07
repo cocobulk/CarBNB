@@ -17,6 +17,7 @@
   font-size: 16px;
   font-weight: bold;
   margin: 0;
+  color: $cyan;
 }
 
 .card-product p {
@@ -29,6 +30,7 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+  color: $darkblue;
 }
 
 
@@ -62,7 +64,7 @@
 
 .card-price {
   font-size: 16px;
-  color: #333;
+  color: $darkblue;
 }
 
 .card-link {
