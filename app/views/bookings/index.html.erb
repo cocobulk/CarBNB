@@ -11,6 +11,6 @@
         <%= link_to "See this booking", booking, class: "btn btn-primary mt-3 mb-3" %>
       <% end %>
       <%= button_to 'Cancel', booking, method: :delete if policy(booking).destroy? %>
+      </div>
     <% end %>
-  </div>
 </div>

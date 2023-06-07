@@ -41,13 +41,17 @@ class CarsController < ApplicationController
 
   def update
     @car = Car.find(params[:id])
+
+    @car = Car.find(params[:id])
     authorize @car
     if @car.update(car_params)
-      redirect_to car_path
+      redirect_to show_my_car_path(@car)
     else
       render :edit, status: :unprocessable_entity
     end
   end
+
+
 
   def destroy
     @car = Car.find(params[:id])
@@ -56,12 +60,11 @@ class CarsController < ApplicationController
     redirect_to cars_path, status: :see_other
   end
 
-private
+  private
 
   def set_cars
     @car = Car.find(params[:id])
   end
-
 
   def car_params
     params.require(:car).permit(:model, :year, :seats_number, :price, :availability, photos: [])
