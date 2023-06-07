@@ -43,7 +43,7 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     authorize @car
     if @car.update(car_params)
-      redirect_to car_path
+      redirect_to show_my_car_path
     else
       render :edit, status: :unprocessable_entity
     end
