@@ -8,7 +8,7 @@
         <a href="<%= car_path(car) %>" class="card-link">
           <div class="card">
             <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
-            <%= cl_image_tag(car.photos[0].key, height: 300, width: 400, crop: :fit) if car.photos.present? %>
+            <%= cl_image_tag(car.photos[0].key, class:"card-img-top rounded", height: 300, width: 400, crop: :fit) if car.photos.present?%>
             <div class="card-body">
               <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= car.model %></h3>
               <div class="d-flex justify-content-between">
