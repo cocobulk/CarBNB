@@ -1,4 +1,5 @@
-<div class="navbar navbar-expand-sm">
+<div class="navbar navbar-expand-lg">
+  
   <div class="container">
     <%= link_to root_path do %>
       <%= image_tag asset_path('logo.png'), alt: "Car Photo", class: "logo-image" %>
@@ -23,13 +24,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item active">
             <%= link_to "Rent My Car", dashboard_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
           </li>
             <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
