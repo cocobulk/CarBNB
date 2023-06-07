@@ -4,7 +4,7 @@
       <h1 class="display-4 text-center mb-4">Cars available near you</h1>
     </div>
     <% @cars.each do |car| %>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-3 mb-4">
         <a href="<%= car_path(car) %>" class="card-link">
           <div class="card">
             <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
