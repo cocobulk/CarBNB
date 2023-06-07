@@ -5,6 +5,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  border-radius: 8px;
 }
 
 .card-product img {
@@ -17,6 +18,7 @@
   font-size: 16px;
   font-weight: bold;
   margin: 0;
+  color: $cyan;
 }
 
 .card-product p {
@@ -29,7 +31,14 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+  color: $darkblue;
 }
+
+.card-product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
 
 
 /* style.css */
@@ -62,7 +71,7 @@
 
 .card-price {
   font-size: 16px;
-  color: #333;
+  color: $darkblue;
 }
 
 .card-link {

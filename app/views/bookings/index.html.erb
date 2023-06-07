@@ -1,16 +1,29 @@
 <div class="container">
+  <div class="row justify-content-center">
+    <div class="col">
+      <h1>My Bookings</h1>
+    </div>
+  </div>
   <div class="row">
-    <h1>My Bookings</h1>
     <% @bookings.each do |booking| %>
       <% if policy(booking).show? %>
-        <div class="mb-3 border-bottom shadow-sm p-3">
-        <h2>Booking ID: <%= booking.id %></h2>
-        <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
-        <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
-        <p>Customer: <%= booking.user.first_name %></p>
-        <%= link_to "See this booking", booking, class: "btn btn-primary mt-3 mb-3" %>
+        <div class="col-6">
+          <a href="<%= booking_path(booking) %>" class="text-decoration-none">
+            <div class="card-product">
+              <img src="<%= asset_path('voiture.png') %>" alt="Car Photo">
+              <div class="card-product-infos">
+                <h2> Car : <%= booking.car.model %></h2>
+                <p>Start Date: <strong><%= booking.start_date.strftime("%Y-%m-%d") %></strong></p>
+                <p>End Date: <strong><%= booking.end_date.strftime("%Y-%m-%d") %></strong></p>
+                <p>Price: <strong><%= booking.car.price %></strong></p>
+              </div>
+            </div>
+          </a>
+        </div>
       <% end %>
+
       <%= button_to 'Cancel', booking, method: :delete if policy(booking).destroy? %>
       </div>
+
     <% end %>
 </div>
