@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <% @cars.each do |car| %>
-      <div class="col-md-6 mb-4">
+      <div class="col-md-4 mb-4">
         <a href="<%= show_my_car_url(car) %>" class="card-link">
           <div class="card">
             <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
@@ -28,7 +28,7 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <h1 class="display-4 text-start mb-4">Bookings of my cars to be approved</h1>
+      <h1 class="display-4 text-start mb-4">Bookings to approve</h1>
     </div>
   </div>
   <div class="row">
@@ -36,7 +36,7 @@
       <% if policy(booking).approve? %>
         <div class="col-6">
           <div class="card-product">
-            <img src="<%= asset_path('voiture.png') %>" alt="Car Photo">
+            <%= cl_image_tag(booking.car.photos[0].key, height: 300, width: 400, crop: :fit) if booking.car.photos.present? %>
             <div class="card-product-infos">
               <h2>Car: <%= booking.car.model %></h2>
               <p>Start Date: <strong><%= booking.start_date.strftime("%Y-%m-%d") %></strong></p>

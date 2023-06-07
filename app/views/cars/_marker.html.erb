@@ -1,4 +1,4 @@
-<%= image_tag "logo.png", height: 30, width: 30, alt: "Logo" %>
+<%= cl_image_tag(car.photos[0].key, height: 30, width: 40, crop: :fit) if car.photos.present? %>
 <div class="badge rounded-pill bg-primary fs-6">
   <%= car.model %>
 </div>
