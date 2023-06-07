@@ -39,3 +39,16 @@
   background: linear-gradient(#147EFF, #0F67DA);
   color: white;
 }
+
+.btn-delete {
+  color: $white;
+  padding: 4px 16px;
+  border-radius: 4px;
+  background: $red;
+  transition: background 0.3s ease;
+}
+
+.btn-delete:hover {
+  background: $red;
+  color: $black;
+}

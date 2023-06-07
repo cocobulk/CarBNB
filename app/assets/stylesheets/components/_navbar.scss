@@ -7,6 +7,13 @@
   line-height: 70px;
 }
 
+@media (min-width: 400px) { 
+  .toggleBtn {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .navbar-brand {
   color: #ecf5f5;
 }
