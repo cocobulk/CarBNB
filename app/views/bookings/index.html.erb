@@ -9,8 +9,8 @@
       <% if policy(booking).show? %>
         <div class="col-6">
           <a href="<%= booking_path(booking) %>" class="text-decoration-none">
-            <div class="card-product">
-              <img src="<%= asset_path('voiture.png') %>" alt="Car Photo">
+            <div class="card-product mb-3">
+              <%= cl_image_tag(booking.car.photos[0].key, height: 300, width: 400, crop: :fit) if booking.car.photos.present? %>
               <div class="card-product-infos">
                 <h2> Car : <%= booking.car.model %></h2>
                 <p>Start Date: <strong><%= booking.start_date.strftime("%Y-%m-%d") %></strong></p>
