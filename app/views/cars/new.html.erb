@@ -19,6 +19,10 @@
           <label for="SeatsInput">💺 Number of seats in the car</label>
           <%= f.input :seats_number, as: :integer, input_html: { class: "form-control", id: "SeatsInput", placeholder: "4"}, label: false%>
         </div>
+        <div class="m-2">
+          <label for="SeatsInput">📸 Photos of the car</label>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        </div>
         <%= f.submit "Register your car", class: "m-2 btn btn-primary rounded" %>
       <% end %>
     </div>

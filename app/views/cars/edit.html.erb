@@ -25,6 +25,10 @@
             <%= f.input :seats_number, as: :integer, input_html: { class: "form-control", id: "SeatsInput", placeholder: "4"}, label: false%>
         </div>
         <div class="m-2">
+          <label for="SeatsInput">📸 Photos of the car</label>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        </div>
+        <div class="m-2">
           <label for="Availability" class="form-label">Availability</label>
           <%= f.input :availability, as: :boolean, input_html: { class: "form-control", id: "Availability", placeholder: "" }, label: false %>
         </div>
