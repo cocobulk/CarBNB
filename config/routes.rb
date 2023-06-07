@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   get "dashboard", to: "pages#dashboard"
   get "dashboard/show/:id", to: "cars#showmycar", as: "show_my_car"
 
+  resources :bookings do
+    member do
+      post :approve
+    end
+  end
   # Defines the root path route ("/")
   # root "articles#index"
 end

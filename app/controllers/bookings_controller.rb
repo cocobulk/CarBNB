@@ -24,7 +24,6 @@ class BookingsController < ApplicationController
     @booking.car = @car
     @booking.user = current_user
     authorize @booking
-    @booking.confirmed = true
     if @booking.save
       redirect_to car_path(@car)
     else
@@ -60,6 +59,13 @@ class BookingsController < ApplicationController
     @booking.destroy
     redirect_to bookings_path
     authorize @booking
+  end
+
+  def approve
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.update(confirmed: true)
+    redirect_to dashboard_path
   end
 
   private

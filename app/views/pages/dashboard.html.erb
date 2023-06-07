@@ -26,4 +26,33 @@
       </div>
     <% end %>
   </div>
+  <div class="row">
+    <div class="col-6">
+      <h1 class="display-4 text-start mb-4">Bookings of my cars to be approved</h1>
+    </div>
+    <% @received_bookings.each do |booking| %>
+      <% if policy(booking).approve? %>
+      <div class="col-md-6 mb-4">
+          <div class="card">
+            <div>
+              <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= booking.car.model %></h3>
+              <div class="d-flex justify-content-between">
+                <p class="card-price"><%= booking.car.seats_number %> Seats</p>
+                <p class="card-price">From: <%= booking.start_date %></p>
+                <p class="card-price">To: <%= booking.end_date %></p>
+                <p class="card-price">$<%= booking.car.price %></p>
+              </div>
+            </div>
+            <div>
+              <% unless booking.confirmed %>
+                <%= link_to 'Confirm Booking', approve_booking_path(booking), class: "button-xs success", data: { turbo_method: :post } %>
+              <% end %>
+            </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% end %>
+    <% end %>
+</div>
 </div>

@@ -29,4 +29,8 @@ class BookingPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def approve?
+    record.car.user == user
+  end
 end
