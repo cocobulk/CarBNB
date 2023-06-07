@@ -34,7 +34,8 @@ class BookingsController < ApplicationController
 
   def edit
     # placeholder for reference as to where view gets instance var.
-    # @booking = Booking.find(params[:id])
+    @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   # PATCH/PUT /booking/:id
