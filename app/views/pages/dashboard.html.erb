@@ -30,29 +30,27 @@
     <div class="col-6">
       <h1 class="display-4 text-start mb-4">Bookings of my cars to be approved</h1>
     </div>
+  </div>
+  <div class="row">
     <% @received_bookings.each do |booking| %>
       <% if policy(booking).approve? %>
-      <div class="col-md-6 mb-4">
-          <div class="card">
-            <div>
-              <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= booking.car.model %></h3>
-              <div class="d-flex justify-content-between">
-                <p class="card-price"><%= booking.car.seats_number %> Seats</p>
-                <p class="card-price">From: <%= booking.start_date %></p>
-                <p class="card-price">To: <%= booking.end_date %></p>
-                <p class="card-price">$<%= booking.car.price %></p>
+        <div class="col-6">
+          <div class="card-product">
+            <img src="<%= asset_path('voiture.png') %>" alt="Car Photo">
+            <div class="card-product-infos">
+              <h2>Car: <%= booking.car.model %></h2>
+              <p>Start Date: <strong><%= booking.start_date.strftime("%Y-%m-%d") %></strong></p>
+              <p>End Date: <strong><%= booking.end_date.strftime("%Y-%m-%d") %></strong></p>
+              <p>Price: <strong><%= booking.car.price %></strong></p>
+            </div>
+            <% unless booking.confirmed %>
+              <div class="confirm-button"> <!-- Wrapped the link in a div -->
+                <%= link_to 'Confirm Booking', approve_booking_path(booking), class: "btn btn-flat mt-2", data: { turbo_method: :post } %>
               </div>
-            </div>
-            <div>
-              <% unless booking.confirmed %>
-                <%= link_to 'Confirm Booking', approve_booking_path(booking), class: "button-xs success", data: { turbo_method: :post } %>
-              <% end %>
-            </div>
-            </div>
+            <% end %>
           </div>
-        </a>
-      </div>
+        </div>
       <% end %>
     <% end %>
-</div>
+  </div>
 </div>
