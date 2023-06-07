@@ -2,8 +2,16 @@ class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    #@cars = Car.all
+    @cars = Car.all
     @cars = policy_scope(Car)
+    @markers = @cars.geocoded.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {car: car}),
+        marker_html: render_to_string(partial: "marker", locals: {car: car}) # Pass the car to the partial
+      }
+    end
   end
 
   def show
