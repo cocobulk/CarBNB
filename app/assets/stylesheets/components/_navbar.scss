@@ -7,7 +7,7 @@
   line-height: 70px;
 }
 
-@media (min-width: 400px) { 
+@media (min-width: 400px) {
   .toggleBtn {
     display: flex;
     align-items: center;
@@ -39,3 +39,16 @@
   width: 100px; /* Adjust the size as per your preference */
   border-radius: 8px;
 }
+
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: white;
+// }
+
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
+
+// .navbar-lewagon .navbar-brand img {
+//   width: 40px;
+// }
