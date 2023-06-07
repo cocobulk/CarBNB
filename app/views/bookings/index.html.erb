@@ -7,7 +7,7 @@
         <h2>Booking ID: <%= booking.id %></h2>
         <p>Start Date: <%= booking.start_date.strftime("%Y-%m-%d") %></p>
         <p>End Date: <%= booking.end_date.strftime("%Y-%m-%d") %></p>
-        <p>Customer: <%= booking.user.first_name %></p>
+        <p>Car: <%= booking.car.model %></p>
         <%= link_to "See this booking", booking, class: "btn btn-primary mt-3 mb-3" %>
       <% end %>
       <%= button_to 'Cancel', booking, method: :delete if policy(booking).destroy? %>
