@@ -42,20 +42,16 @@ class CarsController < ApplicationController
   def update
     @car = Car.find(params[:id])
 
-
     @car = Car.find(params[:id])
     authorize @car
 
-    respond_to do |format|
+
       if @car.update(car_params) && @car.photos.attached?
-        redirect_to show_my_car_path(@car)
+        redirect_to dashboard_path
       else
-        # render :edit, status: :unprocessable_entity
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @car.errors, status: :unprocessable_entity}
+        render :edit, status: :unprocessable_entity
       end
 
-    end
   end
 
 
