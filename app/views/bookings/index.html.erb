@@ -21,6 +21,9 @@
           </a>
         </div>
       <% end %>
+
+      <%= button_to 'Cancel', booking, method: :delete if policy(booking).destroy? %>
+      </div>
+
     <% end %>
-  </div>
 </div>

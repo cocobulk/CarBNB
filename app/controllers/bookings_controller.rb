@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      redirect_to car_path(@car)
+      redirect_to bookings_url, notice: "Booking was successfully updated."
     else
       render :new, status: :unprocessable_entity
     end
