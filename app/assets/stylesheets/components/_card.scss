@@ -42,22 +42,40 @@
 
 
 /* style.css */
-
 .card {
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   overflow: hidden;
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-price {
+  font-size: 16px;
+  color: #666;
+}
+
 
 .card-image {
   width: 100%;
@@ -66,9 +84,6 @@
   // border-radius: 8px 8px 0 0;
 }
 
-.card-body {
-  padding: 20px;
-}
 
 .card-description {
   font-size: 18px;
