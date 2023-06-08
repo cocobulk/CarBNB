@@ -12,6 +12,18 @@ class CarsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: {car: car}) # Pass the car to the partial
       }
     end
+
+
+    if params[:query].present?
+      @cars = Car.where("model ILIKE ?", "%#{params[:query]}%")
+    end
+    if params[:seats_number].present?
+      @cars = Car.where(seats_number: params[:seats_number])
+      @cars = Car.where("seats_number > 5") if params[:seats_number] == "6+"
+    end
+    if params[:price].present?
+      @cars = Car.where("price < ?", params[:price])
+    end
   end
 
   def show
