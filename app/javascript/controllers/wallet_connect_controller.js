@@ -1,17 +1,23 @@
 import { Controller } from "@hotwired/stimulus";
 import { EthereumProvider } from "@walletconnect/ethereum-provider";
-import web3 from "web3";
+import Web3 from "web3";
 
 
 export default class extends Controller {
   static values = {
-    projectId: String
+    projectId: String,
+    alchemy: String,
   };
   static targets = ["connect", "pay", "book", "address"];
 
   // ethereumProvider; // @dev For wallet connect functions.
   accounts;
 
+  web3 = new Web3(
+      new Web3.providers.HttpProvider(
+        `https://eth-sepolia.g.alchemy.com/v2/${this.alchemyValue}}`,
+      ),
+    );
   connect() {
     this.bookTarget.disabled = true;
     console.log("WalletConnectController");
@@ -107,22 +113,28 @@ export default class extends Controller {
   }
 
   async #sendEth() {
-    const limit = web3.eth.estimateGas({
-      from: this.accounts[0],
-      to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
-      value: web3.utils.toWei("0.001"),
-    });
+
     try {
+      // const limit = Web3.eth
+      // .estimateGas({
+      //   from: this.accounts[0],
+      //   to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
+      //   value: web3.utils.toWei("0.001"),
+      // });
+
       const txHash = await ethereum.request({
         method: "eth_sendTransaction",
         params: [
           {
             from: this.accounts[0],
             to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
-            value: Web3.utils.numberToHex(
+            value: web3.utils.numberToHex(
               web3.utils.toWei("0.000001", "ether")
             ),
-            gas: web3.utils.numberToHex(limit),
+            // gas: web3.utils.numberToHex(limit),
+            gas: web3.utils.toHex(
+              web3.utils.toWei("2", "gwei")
+            ),
             maxPriorityFeePerGas: web3.utils.toHex(
               web3.utils.toWei("2", "gwei")
             ),
