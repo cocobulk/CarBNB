@@ -3,11 +3,11 @@
     <form class="row justify-content-center align-items-center px-3">
       <div class="col-md-3">
         <label for="inputModel" class="form-label">Car Model</label>
-        <input type="text" class="form-control" id="inputModel" placeholder="Enter car model">
+        <input type="text" class="form-control" id="inputModel" name="query" placeholder="Enter car model">
       </div>
       <div class="col-md-3">
         <label for="inputSeats" class="form-label">Seats</label>
-        <select class="form-select" id="inputSeats">
+        <select class="form-select" id="inputSeats" name="seats_number">
           <option value="">Any</option>
           <option value="2">2</option>
           <option value="4">4</option>
@@ -17,7 +17,7 @@
       </div>
       <div class="col-md-3">
         <label for="inputPrice" class="form-label">Maximum Price</label>
-        <input type="number" class="form-control" id="inputPrice" placeholder="Enter maximum price">
+        <input type="number" class="form-control" id="inputPrice" name="price" placeholder="Enter maximum price">
       </div>
       <div class="col-md-3">
         <button type="submit" class="btn btn-flat col-12">Apply Filters</button>
