@@ -1,13 +1,28 @@
 <div class="container">
-  <h2>New booking</h2>
-  <p>Car: <%= @car.model %></p>
-  <p>Year: <%= @car.year %></p>
-  <p>Number of seats: <%= @car.seats_number %></p>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <div class="card mt-3 p-3">
+        <h2><strong>New booking</strong></h2>
+        <p>Car: <%= @car.model %></p>
+        <p>Year: <%= @car.year %></p>
+        <p>Price per day: $<%= @car.price %></p>
+        <p>Number of seats: <%= @car.seats_number %></p>
+        <p>Total Price: $</p>
+        <%# <%= @booking.total_price %>
+      </div>
+    </div>
+  </div>
 
-  <%= simple_form_for [@car, @booking] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit class: 'btn btn-primary'%>
-  <% end %>
-  <%# <p>Price: <%= @booking.total_price %></p>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card mt-3 p-3">
+        <%= simple_form_for [@car, @booking] do |f| %>
+          <%= f.input :start_date %>
+          <%= f.input :end_date %>
+          <%= f.submit class: 'btn btn-primary'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -13,9 +13,10 @@
               <%= cl_image_tag(booking.car.photos[0].key, height: 300, width: 400, crop: :fit) if booking.car.photos.present? %>
               <div class="card-product-infos">
                 <h2> Car : <%= booking.car.model %></h2>
-                <p>Start Date: <strong><%= booking.start_date.strftime("%Y-%m-%d") %></strong></p>
-                <p>End Date: <strong><%= booking.end_date.strftime("%Y-%m-%d") %></strong></p>
-                <p>Price: <strong><%= booking.car.price %></strong></p>
+                <p>Start Date: <strong><%= booking.start_date.strftime("%b %d, %Y") %></strong></p>
+                <p>End Date: <strong><%= booking.end_date.strftime("%b %d, %Y") %></strong></p>
+                <%# total price needs to be updated %>
+                <p>Total Price: <strong>$<%= booking.car.price %></strong></p>
               </div>
             </div>
           </a>
