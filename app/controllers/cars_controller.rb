@@ -2,8 +2,9 @@ class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @cars = Car.all
-    @cars = policy_scope(Car)
+    initial_cars = params[:location].present? ? Car.near(params[:location]) : Car.all
+    @cars = policy_scope(initial_cars)
+    @cars = @cars.where('price >= ?', params[:price].split('-').first) if params[:price].present?
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,
