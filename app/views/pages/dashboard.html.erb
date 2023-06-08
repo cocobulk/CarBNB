@@ -28,20 +28,23 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <h1 class="display-4 text-start mb-4">Bookings to approve</h1>
+      <h1 class="display-4 text-start mb-4">Bookings to Approve</h1>
     </div>
   </div>
   <div class="row">
     <% @received_bookings.each do |booking| %>
       <% if policy(booking).approve? %>
         <div class="col-6">
-          <div class="card-product">
+          <div class="card-product mb-3 p-2">
             <%= cl_image_tag(booking.car.photos[0].key, height: 300, width: 400, crop: :fit) if booking.car.photos.present? %>
             <div class="card-product-infos">
-              <h2>Car: <%= booking.car.model %></h2>
-              <p>Start Date: <strong><%= booking.start_date.strftime("%Y-%m-%d") %></strong></p>
-              <p>End Date: <strong><%= booking.end_date.strftime("%Y-%m-%d") %></strong></p>
-              <p>Price: <strong><%= booking.car.price %></strong></p>
+              <h2><%= booking.car.model %></h2>
+              <p>From: <strong><%= booking.start_date.strftime("%b %d, %Y") %></strong></p>
+              <p>To: <strong><%= booking.end_date.strftime("%b %d, %Y") %></strong></p>
+              <p> Total Price: <strong>$<%= booking.car.price %></strong></p>
+              <p><% if booking.confirmed%>
+                  <strong>Confirmed </strong> <i class="fa-solid fa-square-check" style="color: #09c829;"></i>
+                <% end%></p>
             </div>
             <% unless booking.confirmed %>
               <div class="confirm-button"> <!-- Wrapped the link in a div -->
