@@ -1,28 +1,26 @@
 <div class="container">
   <div class="filter-bar">
-    <form class="row justify-content-center align-items-center px-3">
-      <div class="col-md-3">
-        <label for="inputModel" class="form-label">Car Model</label>
-        <input type="text" class="form-control" id="inputModel" placeholder="Enter car model">
-      </div>
-      <div class="col-md-3">
-        <label for="inputSeats" class="form-label">Seats</label>
-        <select class="form-select" id="inputSeats">
-          <option value="">Any</option>
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6+">6+</option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <label for="inputPrice" class="form-label">Maximum Price</label>
-        <input type="number" class="form-control" id="inputPrice" placeholder="Enter maximum price">
-      </div>
-      <div class="col-md-3">
-        <button type="submit" class="btn btn-flat col-12">Apply Filters</button>
-      </div>
-    </form>
+      <%= form_with url: root_path, method: :get, class: 'row justify-content-center align-items-center px-3', local: true do |f| %>
+        <div class="col-md-3">
+          <%= f.label :model, "Car Model", class: "form-label" %>
+          <%= f.text_field :model, value: params[:model], class: "form-control", placeholder: "Enter car model" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.label :seats, "Seats", class: "form-label" %>
+          <%= f.select :seats, options_for_select([['Any', ''], ['2', 2], ['4', 4], ['5', 5], ['6+', '6+']], params[:seats]), {}, class: "form-select" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.label :price, "Price", class: "form-label" %>
+          <%= f.number_field :price, value: params[:price], class: "form-control", placeholder: "Enter maximum price" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.label :location, "Location", class: "form-label" %>
+          <%= f.text_field :location, value: params[:location], class: "form-control", placeholder: "Enter desired location" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.submit "Apply Filters", class: "btn btn-flat col-12" %>
+        </div>
+      <% end %>
   </div>
   <div class="row">
           <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">Cars available near you</h1>
@@ -38,6 +36,7 @@
                 <%= cl_image_tag(car.photos[0].key, class:"card-img-top rounded", height: 300, width: 400, crop: :fit) if car.photos.present?%>
                 <div class="card-body">
                   <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= car.model %></h3>
+                  <p><%= car.address %></p>
                   <div class="d-flex justify-content-between">
                     <p class="card-price"><%= car.seats_number %> Seats</p>
                     <p class="card-price">$<%= car.price %></p>
