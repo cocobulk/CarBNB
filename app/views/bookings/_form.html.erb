@@ -3,6 +3,12 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
+  <%# <form class="d-flex">
+    <input class="form-control me-2" type="date" placeholder="Start Date" aria-label="Start Date">
+    <input class="form-control me-2" type="date" placeholder="End Date" aria-label="End Date">
+  </form> %>
+
+
   <div class="form-inputs">
     <%= f.input :start_date %>
     <%= f.input :end_date %>
