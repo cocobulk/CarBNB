@@ -21,7 +21,13 @@
             <div class="card-price">Start Date: <strong><%= @booking.start_date.strftime("%b %d, %Y") %></strong></div>
             <div class="card-price">End Date: <strong><%= @booking.end_date.strftime("%b %d, %Y") %></strong></div>
             <div class="card-price">Reservation Price: <strong>$<%= @booking.car.price%></strong></div>
-            <div class="card-price">Confirmation: <strong><%= @booking.confirmed %></strong></div>
+            <div class="card-price">
+              <% if @booking.confirmed%>
+                <strong>Confirmed </strong> <i class="fa-solid fa-square-check" style="color: #09c829;"></i>
+              <% else %>
+                <%= 'Awaiting confirmation' %>
+              <% end%>
+            </div>
             <%= button_to 'Cancel', @booking, method: :delete, class: 'btn btn-delete mt-2' if policy(@booking).destroy? %>
           </div>
         </div>
