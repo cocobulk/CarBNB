@@ -1,3 +1,4 @@
+
 <div class="container" data-controller="wallet-connect" data-wallet-connect-project-id-value="<%= ENV['PROJECT_ID'] %>">
   <div class="d-flex justify-content-center">
     <button class="btn btn-primary"  id="connect-button" data-action="click->wallet-connect#connectWallet" data-wallet-connect-target="connect">Connect Wallet</button>
@@ -6,18 +7,40 @@
      <p data-wallet-connect-target="address"></p>
  </div>
 
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <div class="card mt-3 p-3">
+        <h2><strong>New booking</strong></h2>
+        <p>Car: <%= @car.model %></p>
+        <p>Year: <%= @car.year %></p>
+        <p>Price per day: $<%= @car.price %></p>
+        <p>Number of seats: <%= @car.seats_number %></p>
+        <p>Total Price: $</p>
+        <%# <%= @booking.total_price %>
+      </div>
+    </div>
+  </div>
 
-  <h2>New booking</h2>
-  <p>Car: <%= @car.model %></p>
-  <p>Year: <%= @car.year %></p>
-  <p>Number of seats: <%= @car.seats_number %></p>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card mt-3 p-3">
+        <%= simple_form_for [@car, @booking] do |f| %>
 
-  <%= simple_form_for [@car, @booking] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.button :submit, class: 'btn btn-primary', data: { 'wallet-connect-target': 'book', action: 'click->wallet-connect#isPaid' } %>
-  <% end %>
-  <button class="btn btn-success mt-3"  id="pay-button" data-action="click->wallet-connect#pay" data-wallet-connect-target="pay">Pay</button>
-  <%# <p>Price: <%= @booking.total_price %></p>
+
+          <div class="form-group">
+            <label for="booking_start_date">Start Date</label>
+            <%= f.text_field :start_date, class: 'form-control', id: 'booking_start_date', value: '06/08/2023 14:05PM' %>
+          </div>
+          <div class="form-group">
+            <label for="booking_end_date">End Date</label>
+            <%= f.text_field :end_date, class: 'form-control', id: 'booking_end_date', value: '06/08/2023 14:05PM' %>
+          </div>
+
+          <%= f.submit class: 'btn btn-primary', data: { 'wallet-connect-target': 'book'}%>
+        <% end %>
+         <button class="btn btn-success mt-3"  id="pay-button" data-action="click->wallet-connect#pay" data-wallet-connect-target="pay">Pay</button>
+      </div>
+    </div>
+  </div>
 
 </div>
