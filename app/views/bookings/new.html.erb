@@ -1,9 +1,10 @@
 <div class="container" data-controller="wallet-connect" data-wallet-connect-project-id-value="<%= ENV['PROJECT_ID'] %>">
   <div class="d-flex justify-content-center">
     <button class="btn btn-primary"  id="connect-button" data-action="click->wallet-connect#connectWallet" data-wallet-connect-target="connect">Connect Wallet</button>
-    <button class="btn btn-success"  id="pay-button" data-action="click->wallet-connect#pay" data-wallet-connect-target="pay">Pay</button>
   </div>
-
+ <div class="d-flex flex-column mx-auto text-center">
+     <p data-wallet-connect-target="address"></p>
+ </div>
 
 
   <h2>New booking</h2>
@@ -14,7 +15,9 @@
   <%= simple_form_for [@car, @booking] do |f| %>
     <%= f.input :start_date %>
     <%= f.input :end_date %>
-    <%= f.submit class: 'btn btn-primary'%>
+    <%= f.button :submit, class: 'btn btn-primary', data: { 'wallet-connect-target': 'book', action: 'click->wallet-connect#isPaid' } %>
   <% end %>
+  <button class="btn btn-success mt-3"  id="pay-button" data-action="click->wallet-connect#pay" data-wallet-connect-target="pay">Pay</button>
   <%# <p>Price: <%= @booking.total_price %></p>
+
 </div>
