@@ -1,0 +1,37 @@
+.car-title {
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: $darkblue; /* Assuming $darkblue is a predefined variable for the desired color */
+  font-size: 24px;
+  border: 2px solid; /* Add a border with 1px width and use the default border color */
+  border-radius: 50px;
+  border-color: $cyan;
+}
+
+.car-info-container {
+  height: 400px; /* Adjust the height as needed */
+  overflow-y: auto; /* Add a scrollbar if the content exceeds the container height */
+  box-shadow: 0 0 4px $darkblue;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.carousel-container {
+  height: 400px; /* Adjust the height as needed */
+  width: 100%; /* Ensure the carousel takes up the entire width */
+}
+
+.btn-book {
+  color: $white;
+  background-color: $cyan;
+  border-radius: 50px;
+  padding: 8px 24px;
+  display: block;
+  width: 100%;
+}
+
+.btn-book:hover {
+  background: $darkblue;
+  color: white;
+}

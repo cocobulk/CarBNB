@@ -26,6 +26,7 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem "pg_search"
 
 gem "pundit"
 
@@ -72,6 +73,7 @@ gem 'open-uri', '~> 0.3.0'
 gem 'json', '~> 2.6', '>= 2.6.3'
 gem 'net-http', '~> 0.3.2'
 gem 'faker', '~> 2.18', '>= 2.18.2'
+gem 'dotenv'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
