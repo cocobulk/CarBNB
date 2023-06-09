@@ -28,7 +28,7 @@ class CarsController < ApplicationController
 
     if params[:start_date].present? && params[:end_date].present?
       @cars = Car.available(params[:start_date],params[:end_date])
-      raise
+      
     end
   end
 
