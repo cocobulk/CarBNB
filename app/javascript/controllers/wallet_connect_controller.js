@@ -1,35 +1,46 @@
 import { Controller } from "@hotwired/stimulus";
 import { EthereumProvider } from "@walletconnect/ethereum-provider";
+import Web3 from "web3";
+
 
 export default class extends Controller {
   static values = {
     projectId: String,
+    alchemy: String,
   };
-  static targets = ["connect", "pay"];
+  static targets = ["connect", "pay", "book", "address"];
 
-  // ethereumProvider;
+  // ethereumProvider; // @dev For wallet connect functions.
   accounts;
+  // web3 = new Web3(
+  //   new Web3.providers.HttpProvider(
+  //     `https://sepolia.infura.io/v3/${alchemyValue}`,
+  //   ),
+  // );
 
   connect() {
+    this.bookTarget.disabled = true;
     console.log("WalletConnectController");
     if (typeof window.ethereum !== "undefined") {
       console.log("Metamask Detected");
     } else {
       console.log("Metamask not found");
     }
-    // this.#initializeProvider();
+    // this.#initializeProvider(); // @dev For wallet connect functions.
   }
 
   connectWallet(e) {
+    e.preventDefault();
     console.log("connectWallet");
     this.#permissions();
   }
 
   pay(e) {
+    e.preventDefault();
     this.#sendEth();
   }
 
-  // @dev Class method to initialize the provider
+  // @dev Class method to initialize the provider for wallet connect. Not used currently but functional.
   async #initializeProvider() {
     this.ethereumProvider = await EthereumProvider.init({
       projectId: this.projectIdValue,
@@ -47,7 +58,7 @@ export default class extends Controller {
           },
         ],
         walletImages: {
-          exodus: "app/assets/images/exodus.svg",
+          exodus: "https://www.exodus.com/brand/img/logo.svg",
         },
       },
       chains: [11155111],
@@ -57,7 +68,7 @@ export default class extends Controller {
         name: "Car BNB",
         description: "Rent cars with crypto",
         url: "https://car-bnb-scott.herokuapp.com/",
-        icons: ["https://www.exodus.com/brand/img/logo.svg"],
+        icons: ["/app/assets/images/logo.png"],
       },
     });
     // Do something with the initialized provider, such as saving it to a variable or using it in your application
@@ -65,9 +76,15 @@ export default class extends Controller {
   }
 
   async #permissions() {
+    const reg = /\b(\w{6})\w+(\w{4})\b/g;
     this.accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    this.connectTarget.innerText = ethereum.selectedAddress;
+    this.connectTarget.innerText = "Connected";
+    this.addressTarget.innerText = ethereum.selectedAddress.replace(
+      reg,
+      "$1****$2"
+    );
     console.log("Eth Accounts: ", this.accounts);
+    // @dev This is the event listener for the connect button wallet connect.
     // await this.ethereumProvider.connect();
     // await this.ethereumProvider.on("connect", (accounts) => {
     //   console.log(accounts);
@@ -75,20 +92,43 @@ export default class extends Controller {
   }
 
   async #sendEth() {
+    const limit = Web3.eth.estimateGas({
+      from: this.accounts[0],
+      to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
+      value: Web3.utils.toWei("0.001"),
+    });
     try {
       const txHash = await ethereum.request({
         method: "eth_sendTransaction",
         params: [
           {
-            from: this.accounts[0], // The user's active address.
-            to: "0xcbc312D8c334f12da50311adD88D38e073a896D9", // Required except during contract publications.
-            value: "0xE8D4A51000", // Only required to send ether to the recipient from the initiating external account.
-            gasPrice: "0x09184e72a000", // Customizable by the user during MetaMask confirmation.
-            gas: "0x2710", // Customizable by the user during MetaMask confirmation.
+            from: this.accounts[0],
+            to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
+            value: Web3.utils.numberToHex(
+              Web3.utils.toWei("0.000001", "ether")
+            ),
+            gas: Web3.utils.numberToHex(limit),
+            maxPriorityFeePerGas: Web3.utils.toHex(
+              Web3.utils.toWei("2", "gwei")
+            ),
           },
         ],
+        // @dev This is the initial way with hard-coded hex values from docs. Use web3-utils.
+        // params: [
+        //   {
+        //     from: this.accounts[0], // The user's active address.
+        //     to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970", // Required except during contract publications.
+        //     value: "0xE8D4A51000", // Only required to send ether to the recipient from the initiating external account.
+        //     gasPrice: "0x09184e72a000", // Customizable by the user during MetaMask confirmation.
+        //     gas: "0x2710", // Customizable by the user during MetaMask confirmation.
+        //   },
+        // ],
       });
       console.log(txHash);
+      if (txHash) {
+        this.payTarget.innerText = "Paid";
+        this.bookTarget.disabled = false;
+      }
     } catch (error) {
       console.log(error.message);
     }
