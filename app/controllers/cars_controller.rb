@@ -25,10 +25,22 @@ class CarsController < ApplicationController
     if params[:price].present?
       @cars = Car.where("price < ?", params[:price])
     end
+
+    if params[:start_date].present? && params[:end_date].present?
+      @cars = Car.available(params[:start_date],params[:end_date])
+      
+    end
   end
+
+
+
+
+
+
 
   def show
     @car = Car.find(params[:id])
+    @review = Review.new
     authorize @car
     # authorize @car # @dev Pundit >> models/policy/car_policy.rb
   end
