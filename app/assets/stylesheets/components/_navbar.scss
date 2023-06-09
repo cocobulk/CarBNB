@@ -8,7 +8,7 @@
   margin-bottom: 0px;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 500px) {
   .toggleBtn {
     display: flex;
     align-items: center;
@@ -35,11 +35,16 @@
   flex-grow: 0;
 }
 
+
 .logo-image {
   width: 140px; /* Adjust the size as per your preference */
   border-radius: 50px;
 }
 
+.navbar-lewagon {
+  justify-content: space-around;
+  background: white;
+}
 
 // .navbar-lewagon {
 //   justify-content: space-between;
@@ -53,3 +58,4 @@
 // .navbar-lewagon .navbar-brand img {
 //   width: 40px;
 // }
+
