@@ -42,7 +42,47 @@
 
 
 /* style.css */
-.card {
+.card {.card-product {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: block;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: $cyan;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+  color: $darkblue;
+}
+
+.card-product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
@@ -60,22 +100,21 @@
   object-fit: cover;
 }
 
-.card-body {
-  padding: 15px;
-}
-
 .card-title {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: $cyan;
+  padding-top: 4px;
+  padding-left: 5px;
 }
 
-.card-price {
-  font-size: 16px;
-  color: #666;
-}
+.card-address {
+  font-size: 14px;
+  color: $darkblue;
+  font-weight: 400;
 
+}
 
 .card-image {
   width: 100%;
@@ -91,10 +130,63 @@
 }
 
 .card-price {
-  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  font-size: 14px;
   color: $darkblue;
+  border: 1px solid $darkblue;
+  border-radius: 8px;
+  padding: 4px;
+  margin-top: 6px;
 }
 
 .card-link {
   text-decoration: none;
+}
+
+
+/* nav bar search toogle.css */
+
+.card-product-search {
+  overflow: hidden;
+  height: 90px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.card-product-search img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product-search h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: $cyan;
+}
+
+.card-product-search p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product-search .content {
+  padding: 16px;
+  color: $darkblue;
+}
+
+.card-product-search:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }

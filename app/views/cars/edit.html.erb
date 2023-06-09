@@ -10,10 +10,6 @@
          <%= f.error_notification %>
          <%= f.error_notification messages: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
           <div class="m-2">
-            <label for="UserInput" class="form-label">User ID </label>
-            <%= f.input :user_id, as: :integer, input_html: { class: "form-control", id: "UserInput", placeholder: "5" }, label: false %>
-          </div>
-          <div class="m-2">
             <label for="ModelInput" class="form-label">🚘 Car Model </label>
             <%= f.input :model, as: :string, input_html: { class: "form-control", id: "ModelInput", placeholder: "Opel Corsa" }, label: false %>
           </div>

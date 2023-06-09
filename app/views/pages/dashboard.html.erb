@@ -1,56 +1,70 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <h1 class="display-4 text-start mb-4">My Cars to Rent</h1>
-    </div>
-    <div class="col-6 text-end">
-      <%= link_to "New car", new_car_path, class: "btn btn-flat mb-2" %>
-    </div>
-  </div>
-  <div class="row">
-    <% @cars.each do |car| %>
-      <div class="col-md-4 mb-4">
-        <a href="<%= show_my_car_url(car) %>" class="card-link">
-          <div class="card">
-            <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
-            <%= cl_image_tag(car.photos[0].key, height: 300, width: 400, crop: :fit) if car.photos.present? %>
-            <div class="card-body">
-              <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= car.model %></h3>
-              <div class="d-flex justify-content-between">
-                <p class="card-price"><%= car.seats_number %> Seats</p>
-                <p class="card-price">$<%= car.price %></p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <h1 class="display-4 text-start mb-4">Bookings to approve</h1>
-    </div>
-  </div>
-  <div class="row">
-    <% @received_bookings.each do |booking| %>
-      <% if policy(booking).approve? %>
+      <div class="row">
         <div class="col-6">
-          <div class="card-product">
-            <%= cl_image_tag(booking.car.photos[0].key, height: 300, width: 400, crop: :fit) if booking.car.photos.present? %>
-            <div class="card-product-infos">
-              <h2>Car: <%= booking.car.model %></h2>
-              <p>Start Date: <strong><%= booking.start_date.strftime("%Y-%m-%d") %></strong></p>
-              <p>End Date: <strong><%= booking.end_date.strftime("%Y-%m-%d") %></strong></p>
-              <p>Price: <strong><%= booking.car.price %></strong></p>
-            </div>
-            <% unless booking.confirmed %>
-              <div class="confirm-button"> <!-- Wrapped the link in a div -->
-                <%= link_to 'Confirm Booking', approve_booking_path(booking), class: "btn btn-flat mt-2", data: { turbo_method: :post } %>
-              </div>
-            <% end %>
+            <h1 class="text-start mb-4">My Cars to Rent</h1>
           </div>
+          <div class="col-6 text-end">
+            <%= link_to "New car", new_car_path, class: "btn btn-flat mb-2" %>
+          </div>
+      </div>
+      <div class="row justify-content-between">
+        <% @cars.each do |car| %>
+          <div class="col-md-6 mb-4">
+            <a href="<%= show_my_car_url(car) %>" class="card-link">
+              <div class="card">
+                <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
+                <%= cl_image_tag(car.photos[0].key, class:"card-img-top rounded", height: 300, width: 400, crop: :fit) if car.photos.present?%>
+                <div class="row p-2">
+                  <div class="col-8">
+                    <p class="card-title"><%= car.model %><p>
+                    <p class="card-address">📍 <%= car.address %><p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-price">
+                      <strong>$<%= car.price %></strong>
+                      per day
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-center mb-4">Bookings to Approve</h1>
         </div>
-      <% end %>
-    <% end %>
+      </div>
+      <div class="row">
+        <% @received_bookings.each do |booking| %>
+          <% if policy(booking).approve? %>
+            <div class="col-6">
+              <div class="card-product mb-3 p-2">
+                <%= cl_image_tag(booking.car.photos[0].key, height: 300, width: 400, crop: :fit) if booking.car.photos.present? %>
+                <div class="card-product-infos">
+                  <h2><%= booking.car.model %></h2>
+                  <p>From: <strong><%= booking.start_date.strftime("%b %d, %Y") %></strong></p>
+                  <p>To: <strong><%= booking.end_date.strftime("%b %d, %Y") %></strong></p>
+                  <p> Total Price: <strong>$<%= booking.car.price %></strong></p>
+                  <p><% if booking.confirmed%>
+                      <strong>Confirmed </strong> <i class="fa-solid fa-square-check" style="color: #09c829;"></i>
+                    <% end%></p>
+                </div>
+                <% unless booking.confirmed %>
+                  <div class="confirm-button"> <!-- Wrapped the link in a div -->
+                    <%= link_to 'Confirm Booking', approve_booking_path(booking), class: "btn btn-flat mt-2", data: { turbo_method: :post } %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
