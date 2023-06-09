@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-lg">
-  <div class="container container-fluid">
+  <div class="container">
     <%= link_to root_path do %>
       <%= image_tag asset_path('carbnblogo.png'), alt: "Car Photo", class: "logo-image" %>
     <% end %>
@@ -8,30 +8,23 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-      <div class="navbar-form px-4 py-2">
-        <form class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Location" aria-label="Location">
-          <input class="form-control me-2" type="date" placeholder="Start Date" aria-label="Start Date">
-          <input class="form-control me-2" type="date" placeholder="End Date" aria-label="End Date">
-          <button class="btn btn-flat" type="submit"><i class="fas fa-search"></i></button>
-        </form>
-      </div>
-
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active m-2">
-            <%= link_to "My Bookings", bookings_path, class: "btn btn-flat" %>
+          <li class="nav-item active mt-1">
+            <%= link_to "My Bookings", bookings_path, class: "btn btn-ghost" %>
+
           </li>
-          <li class="nav-item active m-2">
-            <%= link_to "Rent My Car", dashboard_path, class: "btn btn-flat md-2" %>
+          <li class="nav-item active mt-1 ">
+            <%= link_to "Rent My Car", dashboard_path, class: "btn btn-ghost" %>
           </li>
-            <li class="nav-item dropdown m-2">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
+          <li class="nav-item dropdown mt-1">
+            <%= button_tag type: 'button', class: 'btn btn-navbar dropdown-toggle', id: 'navbarDropdown', data: { bs_toggle: 'dropdown' }, 'aria-haspopup': true, 'aria-expanded': false do %>
+              Account
+            <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Rent My Car", dashboard_path, class: "dropdown-item" %>
-              <%= link_to "My Bookings", bookings_path, class: "dropdown-item" %>
+              <%= link_to "Account", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

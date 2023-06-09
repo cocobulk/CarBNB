@@ -1,31 +1,47 @@
-<div class="container">
-  <div class="filter-bar">
-    <form class="row justify-content-center align-items-center px-3">
-      <div class="col-md-3">
-        <label for="inputModel" class="form-label">Car Model</label>
-        <input type="text" class="form-control" id="inputModel" name="query" placeholder="Enter car model">
-      </div>
-      <div class="col-md-3">
-        <label for="inputSeats" class="form-label">Seats</label>
-        <select class="form-select" id="inputSeats" name="seats_number">
-          <option value="">Any</option>
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6+">6+</option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <label for="inputPrice" class="form-label">Maximum Price</label>
-        <input type="number" class="form-control" id="inputPrice" name="price" placeholder="Enter maximum price">
-      </div>
-      <div class="col-md-3">
-        <button type="submit" class="btn btn-flat col-12">Apply Filters</button>
-      </div>
-    </form>
+<div class="search-bar">
+  <div class="row align-items-center justify-content-center">
+    <div class="col">
+      <%= form_with url: root_path, method: :get, class: 'row justify-content-between align-items-center px-3', local: true do |f| %>
+        <div class="col-md-4">
+          <div class="form-group col">
+            <%= f.text_field :location, value: params[:location], class: "form-control search-input", placeholder: "Location" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <%= f.date_field :start_date, value: params[:start_date], class: "form-control search-input", placeholder: "Start-date" %>
+              </div>
+            </div>
+            <div class="col-auto pt-2">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <%= f.date_field :end_date, value: params[:end_date], class: "form-control search-input", placeholder: "End-date" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <%= f.number_field :price, value: params[:price], class: "form-control search-input", placeholder: "Daily Price" %>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group col">
+            <button class="btn btn-flat" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>
+
+<div class="container">
   <div class="row">
-          <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">Cars available near you</h1>
+    <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">Cars available near you</h1>
     <div class="col-md-6">
       <div class="col-12">
       </div>
@@ -36,6 +52,7 @@
               <div class="card">
                 <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
                 <%= cl_image_tag(car.photos[0].key, class:"card-img-top rounded", height: 300, width: 400, crop: :fit) if car.photos.present?%>
+<<<<<<< HEAD
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= car.model %></h3>
@@ -44,6 +61,18 @@
                   <div class="d-flex justify-content-between">
                     <p class="card-price"><%= car.seats_number %> Seats</p>
                     <p class="card-price">$<%= car.price %></p>
+=======
+                <div class="row p-2">
+                  <div class="col-8">
+                    <p class="card-title"><%= car.model %><p>
+                    <p class="card-address">📍 <%= car.address %><p>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-price">
+                      <strong>$<%= car.price %></strong>
+                      per day
+                    </p>
+>>>>>>> cf7cbe0d179af84fa2f2ea595994db3ad0bbe7c6
                   </div>
                 </div>
               </div>
@@ -62,16 +91,3 @@
       </div>
     </div>
   </div>
-  <div class="footer">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i> at Le Wagon
-  </div>
-</div>
-</div>
