@@ -1,31 +1,53 @@
-<div class="container">
-  <div class="filter-bar">
-    <form class="row justify-content-center align-items-center px-3">
-      <div class="col-md-3">
-        <label for="inputModel" class="form-label">Car Model</label>
-        <input type="text" class="form-control" id="inputModel" name="query" placeholder="Enter car model">
-      </div>
-      <div class="col-md-3">
-        <label for="inputSeats" class="form-label">Seats</label>
-        <select class="form-select" id="inputSeats" name="seats_number">
-          <option value="">Any</option>
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6+">6+</option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <label for="inputPrice" class="form-label">Maximum Price</label>
-        <input type="number" class="form-control" id="inputPrice" name="price" placeholder="Enter maximum price">
-      </div>
-      <div class="col-md-3">
-        <button type="submit" class="btn btn-flat col-12">Apply Filters</button>
-      </div>
-    </form>
+<div class="position-relative">
+  <%# carousel %>
+  <div id="carouselSlidesonly" class="carousel slide overflow-hidden" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% images = [
+        'https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
+        'https://images.unsplash.com/photo-1601362840608-942cdd122b52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
+        'https://cdn.bmwblog.com/wp-content/uploads/2022/04/bmw-i7-2023-live-photos-interior-design-19.jpg'
+      ] %>
+      <% images.each_with_index do |img, index| %>
+        <div class="carousel-item <%= 'active' if index.zero? %>">
+          <div class="w-100" style="height: 80vh; background-size: cover; background-position: center; background-image: url('<%= img %>')"></div>
+        </div>
+      <% end %>
+    </div>
   </div>
+  <%# floating on top: filters %>
+  <div class="position-absolute h-100 p-4 w-50 top-0" style="opacity: 0.8;">
+    <div class="h-100 w-50 bg-light green" style="border-radius: 10px;">
+      <%# form %>
+      <form class="row justify-content-center align-items-center px-3">
+        <div>
+          <label for="inputModel" class="form-label" style="font-weight: bold; color: black; opacity: 0.9;">Car Model</label>
+          <input type="text" class="form-control" id="inputModel" name="query" placeholder="Search by car model">
+        </div>
+        <div>
+          <label for="inputSeats" class="form-label" style="font-weight: bold; color: black; opacity: 0.9;">Seats</label>
+          <select class="form-select" id="inputSeats" name="seats_number">
+            <option value="">Any</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6+">6+</option>
+          </select>
+        </div>
+        <div>
+          <label for="inputPrice" class="form-label" style="font-weight: bold; color: black; opacity: 0.9;">Maximum Price</label>
+          <input type="number" class="form-control" id="inputPrice" name="price" placeholder="Enter maximum price">
+        </div>
+        <div class="mt-3">
+          <button type="submit" class="btn btn-flat col-12" >Apply Filters</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <div class="row">
-          <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">Cars available near you</h1>
+      <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">Cars available near you</h1>
     <div class="col-md-6">
       <div class="col-12">
       </div>
@@ -59,13 +81,14 @@
       </div>
     </div>
   </div>
-  <div class="footer">
+
+  <div class="footer text-center mt-5">
   <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/"><i class="fab fa-github"></i></a>
+    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+    <a href="https://en-gb.facebook.com/"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
   </div>
   <div class="footer-copyright">
     This footer is made with <i class="fas fa-heart"></i> at Le Wagon
