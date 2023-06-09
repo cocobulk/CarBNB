@@ -9,7 +9,7 @@
         <p>Year: <%= @car.year %></p>
         <p>Price per day: $<%= @car.price %></p>
         <p>Number of seats: <%= @car.seats_number %></p>
-        <p>Total Price: $</p>
+        <%# <p>Total Price: $</p> %>
         <%# <%= @booking.total_price %>
       </div>
     </div>
@@ -19,16 +19,8 @@
     <div class="col-6">
       <div class="card mt-3 p-3">
         <%= simple_form_for [@car, @booking] do |f| %>
-
-          <div class="form-group">
-            <label for="booking_start_date">Start Date</label>
-            <%= f.text_field :start_date, class: 'form-control', id: 'booking_start_date', value: '06/08/2023 14:05PM' %>
-          </div>
-          <div class="form-group">
-            <label for="booking_end_date">End Date</label>
-            <%= f.text_field :end_date, class: 'form-control', id: 'booking_end_date', value: '06/08/2023 14:05PM' %>
-          </div>
-
+          <%= f.input :start_date %>
+          <%= f.input :end_date %>
           <%= f.submit class: 'btn btn-primary'%>
         <% end %>
       </div>
