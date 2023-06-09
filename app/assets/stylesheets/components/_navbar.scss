@@ -3,7 +3,7 @@
   color: $darkblue;
   justify-content: space-between;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-  height: 100px;
+  height: 80px;
   line-height: 80px;
   margin-bottom: 0px;
 }
@@ -35,28 +35,10 @@
   flex-grow: 0;
 }
 
-.navbar-form {
-  border-radius: 50px;
-  background-color: $white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box-shadow for the shadow effect */
-  color: $darkblue;
-  margin-right: 30px;
-}
-
-// #nav-wide {
-//   border: #7ce0e0 1px solid;
-//   width: 200px;
-//   height: auto;
-// }
-
-// #nav-thin {
-//   border: #7ce0e0 1px solid;
-// }
 
 .logo-image {
-  width: 120px; /* Adjust the size as per your preference */
-  border-radius: 8px;
-  margin-right: 10px;
+  width: 140px; /* Adjust the size as per your preference */
+  border-radius: 50px;
 }
 
 .navbar-lewagon {
@@ -64,11 +46,16 @@
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: white;
+// }
 
-.navbar-lewagon .navbar-brand img {
-  width: 120px;
-  border-radius: 8px;
-}
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
+
+// .navbar-lewagon .navbar-brand img {
+//   width: 40px;
+// }
+
