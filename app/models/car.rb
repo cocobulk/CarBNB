@@ -13,4 +13,6 @@ class Car < ApplicationRecord
   # Validations
   validates :year, :price, :seats_number, presence: true
   # validates :photos, presence: true
+
+  scope :available,-> (start_date,end_date){ joins(:bookings).where.not("bookings.start_date <= ? AND bookings.end_date >= ?",start_date,end_date) }
 end
