@@ -100,22 +100,19 @@
   object-fit: cover;
 }
 
-.card-body {
-  padding: 15px;
-}
-
 .card-title {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: $cyan;
 }
 
-.card-price {
-  font-size: 16px;
-  color: #666;
-}
+.card-address {
+  font-size: 14px;
+  color: $darkblue;
+  font-weight: 400;
 
+}
 
 .card-image {
   width: 100%;
@@ -131,8 +128,16 @@
 }
 
 .card-price {
-  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
   color: $darkblue;
+  border: 1px solid $darkblue;
+  border-radius: 8px;
+  padding: 4px
 }
 
 .card-link {
