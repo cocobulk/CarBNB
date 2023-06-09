@@ -92,37 +92,37 @@ export default class extends Controller {
   }
 
   async #sendEth() {
-    // const limit = Web3.eth.estimateGas({
-    //   from: this.accounts[0],
-    //   to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
-    //   value: Web3.utils.toWei("0.001"),
-    // });
+    const limit = Web3.eth.estimateGas({
+      from: this.accounts[0],
+      to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
+      value: Web3.utils.toWei("0.001"),
+    });
     try {
       const txHash = await ethereum.request({
         method: "eth_sendTransaction",
-        // params: [
-        //   {
-        //     from: this.accounts[0],
-        //     to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
-        //     value: Web3.utils.numberToHex(
-        //       Web3.utils.toWei("0.000001", "ether")
-        //     ),
-        //     gas: Web3.utils.numberToHex(limit),
-        //     maxPriorityFeePerGas: Web3.utils.toHex(
-        //       Web3.utils.toWei("2", "gwei")
-        //     ),
-        //   },
-        // ],
-        // @dev This is the initial way with hard-coded hex values from docs. Use web3-utils.
         params: [
           {
-            from: this.accounts[0], // The user's active address.
-            to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970", // Required except during contract publications.
-            value: "0xE8D4A51000", // Only required to send ether to the recipient from the initiating external account.
-            gasPrice: "0x09184e72a000", // Customizable by the user during MetaMask confirmation.
-            gas: "0x2710", // Customizable by the user during MetaMask confirmation.
+            from: this.accounts[0],
+            to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970",
+            value: Web3.utils.numberToHex(
+              Web3.utils.toWei("0.000001", "ether")
+            ),
+            gas: Web3.utils.numberToHex(limit),
+            maxPriorityFeePerGas: Web3.utils.toHex(
+              Web3.utils.toWei("2", "gwei")
+            ),
           },
         ],
+        // @dev This is the initial way with hard-coded hex values from docs. Use web3-utils.
+        // params: [
+        //   {
+        //     from: this.accounts[0], // The user's active address.
+        //     to: "0x2f318C334780961FB129D2a6c30D0763d9a5C970", // Required except during contract publications.
+        //     value: "0xE8D4A51000", // Only required to send ether to the recipient from the initiating external account.
+        //     gasPrice: "0x09184e72a000", // Customizable by the user during MetaMask confirmation.
+        //     gas: "0x2710", // Customizable by the user during MetaMask confirmation.
+        //   },
+        // ],
       });
       console.log(txHash);
       if (txHash) {
