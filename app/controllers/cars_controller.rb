@@ -28,15 +28,9 @@ class CarsController < ApplicationController
 
     if params[:start_date].present? && params[:end_date].present?
       @cars = Car.available(params[:start_date],params[:end_date])
-      
+
     end
   end
-
-
-
-
-
-
 
   def show
     @car = Car.find(params[:id])
@@ -47,6 +41,10 @@ class CarsController < ApplicationController
   def showmycar
     @car = Car.find(params[:id])
     authorize @car
+    @bookings = current_user.bookings
+    @received_bookings = current_user.cars.map do |car|
+      car.bookings
+    end.flatten
   end
 
   def new
@@ -76,17 +74,12 @@ class CarsController < ApplicationController
 
     @car = Car.find(params[:id])
     authorize @car
-
-
       if @car.update(car_params) && @car.photos.attached?
         redirect_to dashboard_path
       else
         render :edit, status: :unprocessable_entity
       end
-
   end
-
-
 
   def destroy
     @car = Car.find(params[:id])

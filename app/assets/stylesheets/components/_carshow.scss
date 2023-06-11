@@ -35,3 +35,11 @@
   background: $darkblue;
   color: white;
 }
+
+.carousel-image {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 0;
+}

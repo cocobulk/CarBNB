@@ -69,13 +69,15 @@
   display: flex;
   align-items: center;
   border-radius: 8px;
+  margin-left: 0;
 }
 
 .card-product-image {
-  height: 100%;
-  width: 240px;
+  height: 150px;
+  width: 300px;
   object-fit: cover;
   border-radius: 8px;
+  margin-right: 0;
 }
 
 .card-product-title {
