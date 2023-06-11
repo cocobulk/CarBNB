@@ -9,11 +9,24 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      main {
+        flex: 1;
+      }
+    </style>
   </head>
 
   <body>
     <%= render "shared/navbar" %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
     <%= render "shared/flashes" %>
     <%= render "shared/footer" %>
   </body>

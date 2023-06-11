@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row justify-content-center">
+  <div class="row text-center mb-3">
     <div class="col">
       <h1>My Bookings</h1>
     </div>
@@ -7,26 +7,35 @@
   <div class="row">
     <% @bookings.each do |booking| %>
       <% if policy(booking).show? %>
-        <div class="col-6">
-          <a href="<%= booking_path(booking) %>" class="text-decoration-none">
-            <div class="card-product mb-3 p-2">
-              <%= cl_image_tag(booking.car.photos[0].key, height: 300, width: 400, crop: :fit) if booking.car.photos.present? %>
-              <div class="card-product-infos">
-                <h2> Car : <%= booking.car.model %></h2>
-                <p>From: <strong><%= booking.start_date.strftime("%b %d, %Y") %></strong></p>
-                <p>To: <strong><%= booking.end_date.strftime("%b %d, %Y") %></strong></p>
-                <%# total price needs to be updated %>
-                <p>Total Price: <strong>$<%= booking.car.price %></strong></p>
-                <p><% if booking.confirmed%>
-                  <strong>Confirmed </strong> <i class="fa-solid fa-square-check" style="color: #09c829;"></i>
-                <% else %>
-                  <%= 'Awaiting confirmation' %>
-                <% end%></p>
+        <div class="col-4">
+          <h2 class="text-center mb-4"><i class="fa-solid fa-location-dot"></i> <%= booking.car.address %></h1>
+          <div class="card">
+            <img src="<%= asset_path('voiture.png') %>" alt="Car Photo" class="card-image">
+            <div class="card-body">
+              <div class="d-flex justify-content-between mt-2">
+                <h3 class="card-title fw-bold fs-5 text-start text-primary"><%= booking.car.model %></h3>
+                <%= link_to edit_booking_path(booking), class: 'btn-navbar' do %>
+                  <i class="fa-solid fa-pen-to-square fa-xl"></i>
+                <% end %>
               </div>
+              <div class="d-flex flex-column">
+                <div class="card-price">From: <strong><%= booking.start_date.strftime("%b %d, %Y") %></strong></div>
+                <div class="card-price">To: <strong><%= booking.end_date.strftime("%b %d, %Y") %></strong></div>
+                <div class="card-price">Reservation Price: <strong>$<%= (booking.end_date - booking.start_date + 1).to_i * booking.car.price %></strong></div>
+                <div class="card-price">
+                  <% if booking.confirmed%>
+                    <strong>Confirmed </strong> <i class="fa-solid fa-square-check" style="color: #09c829;"></i>
+                  <% else %>
+                    <%= 'Awaiting confirmation' %>
+                  <% end%>
+                </div>
+                <%= button_to 'Cancel', booking, method: :delete, class: 'btn btn-delete mt-2' if policy(booking).destroy? %>
+              </div>
+            </div>
           </div>
-          </a>
         </div>
       <% end %>
     <% end %>
   </div>
+
 </div>

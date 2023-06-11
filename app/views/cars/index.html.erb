@@ -47,10 +47,9 @@
       </div>
       <div class="row justify-content-between">
         <% @cars.each do |car| %>
-          <div class="col-md-6 mb-4">
+          <div class="col-6 mb-4">
             <a href="<%= car_path(car) %>" class="card-link">
               <div class="card">
-                <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
                 <%= cl_image_tag(car.photos[0].key, class:"card-image", height: 300, width: 400, crop: :fit) if car.photos.present?%>
                 <div class="card-content">
                   <div class="row">
