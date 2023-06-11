@@ -1,22 +1,36 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row mb-4">
     <div class="col-12 text-start">
       <%= link_to "Back to my cars", dashboard_path %>
     </div>
   </div>
-  <div class="row shadow p-3 mb-5 bg-body rounded">
-    <div class="col-9">
-      <h1 class="display-4 text-start mb-4 fw-bold fs-5 text-start"><%= @car.model %></h1>
+  <div class="card-product">
+    <% if @car.photos.present? %>
+      <%= cl_image_tag(@car.photos[0].key, class: "card-product-image", height: 300, width: 400, crop: :fit) %>
+    <% end %>
+    <div class="card-product-infos row">
+      <div class="col-8">
+        <h2 class="card-product-title"><%= @car.model %></h2>
+      </div>
+      <div class="col-4 text-end">
+        <%= link_to "Edit informations about my car", edit_car_path, class: "btn btn-flat" %>
+      </div>
+      <div class="col-2">
+        <p><strong>Price per day :</strong> <%= @car.price %> $</p>
+      </div>
+      <div class="col-2">
+        <p><strong>Number of seats : </strong> <%= @car.seats_number %></p>
+      </div>
+      <div class="col-2">
+        <p><strong>Year : </strong><%= @car.year %></p>
+      </div>
+      <div class="col-2">
+        <p><strong>Location : </strong><%= @car.address %></p>
+      </div>
     </div>
-    <div class="col-3 text-end">
-      <%= link_to "Edit informations about my car", edit_car_path, class: "btn btn-flat mb-2" %>
-    </div>
-    <p class="col-2"> Price : <%= @car.price %></p>
-    <p class="col-2"> Seats : <%= @car.seats_number %></p>
-    <p class="col-2"> Year : <%= @car.year %></p>
-    <p class="col-2">Availability : <%= @car.availability %></p>
   </div>
-  <div class="row justify-content-center">
+
+  <div class="row justify-content-center mt-5">
     <div class="col-8">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -55,4 +69,3 @@
       </div>
     </div>
 </div>
-

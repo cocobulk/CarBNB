@@ -9,7 +9,7 @@
     <div class="col-6">
       <a href="<%= show_my_car_url(car) %>" class="card-link">
         <div class="card mb-4">
-          <%= cl_image_tag(car.photos[0].key, class: "card-image rounded") if car.photos.present? %>
+          <%= cl_image_tag(car.photos[0].key, class: "card-image") if car.photos.present? %>
           <div class="card-content">
             <div class="row">
               <div class="card-title col-8">
