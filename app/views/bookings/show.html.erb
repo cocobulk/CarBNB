@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container-fluid">
   <div class="row mb-4">
     <div class="col-12 text-start">
       <%= link_to 'Back to my bookings', bookings_path %>
@@ -20,7 +20,7 @@
           <div class="d-flex flex-column">
             <div class="card-price">From: <strong><%= @booking.start_date.strftime("%b %d, %Y") %></strong></div>
             <div class="card-price">To: <strong><%= @booking.end_date.strftime("%b %d, %Y") %></strong></div>
-            <div class="card-price">Reservation Price: <strong>$<%= @booking.car.price%></strong></div>
+            <div class="card-price">Reservation Price: <strong>$<%= (@booking.end_date - @booking.start_date + 1).to_i * @booking.car.price %></strong></div>
             <div class="card-price">
               <% if @booking.confirmed%>
                 <strong>Confirmed </strong> <i class="fa-solid fa-square-check" style="color: #09c829;"></i>

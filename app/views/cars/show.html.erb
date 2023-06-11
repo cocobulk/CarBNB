@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row mb-4">
     <div class="col-12 text-start">
       <%= link_to "Back to list of cars", root_path %>
@@ -22,43 +22,27 @@
       </div>
     </div>
     <div class="col-6">
-      <div class="row justify-content-center">
-        <div id="carouselExampleControls" class="carousel slide carousel-container" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <% if @car.photos.present? %>
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            <% if @car.photos[0].present? %>
+              <%= cl_image_tag(@car.photos[0].key, class: "carousel-image", crop: :fill)%>
+            <% end %>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <%# <img src="<%= asset_path('voiture.png')" class="d-block w-100" alt="car photo"> %>
-              <% if @car.photos[0].present? %>
-                <%= cl_image_tag(@car.photos[0].key, style: 'height:400px; width:100%;', crop: :fill)%>
-              <% end %>
+          <% if @car.photos[1].present? %>
+            <div class="carousel-item" data-bs-interval="3000">
+                <%= cl_image_tag(@car.photos[1].key, class: "carousel-image", crop: :fill)%>
             </div>
-            <% if @car.photos[1].present? %>
-              <div class="carousel-item">
-                <%# <img src="<%= asset_path('voiture2.jpeg')" class="d-block w-100 img-thumbnail" alt="car photo"> %>
-                  <%= cl_image_tag(@car.photos[1].key, style: 'height:400px; width:100%;', crop: :fill)%>
-              </div>
-            <% end %>
-            <% if @car.photos[2].present? %>
-              <div class="carousel-item">
-                <%# <img src="<%= asset_path('voiture3.jpeg')" class="d-block w-100" alt="car photo"> %>
-                  <%= cl_image_tag(@car.photos[2].key, style: 'height:400px; width:100%;', crop: :fill)%>
-              </div>
-            <% end %>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+          <% end %>
+          <% if @car.photos[2].present? %>
+            <div class="carousel-item" data-bs-interval="3000">
+              <%= cl_image_tag(@car.photos[2].key, class: "carousel-image", crop: :fill)%>
+            </div>
+          <% end %>
         </div>
       </div>
+    <% end %>
     </div>
   </div>
 </div>

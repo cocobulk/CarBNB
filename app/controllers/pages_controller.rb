@@ -9,8 +9,4 @@ class PagesController < ApplicationController
     end.flatten
     @cars = current_user.cars
   end
-
-  def show_account
-    @user = current_user
-  end
 end

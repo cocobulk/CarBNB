@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <h1 class="text-center mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">Cars available near you</h1>
     <div class="col-md-6">
@@ -51,17 +51,19 @@
             <a href="<%= car_path(car) %>" class="card-link">
               <div class="card">
                 <%# <img src="<%= asset_path('voiture.png')" alt="Car Photo" class="card-image"> %>
-                <%= cl_image_tag(car.photos[0].key, class:"card-img-top rounded", height: 300, width: 400, crop: :fit) if car.photos.present?%>
-                <div class="row p-2">
-                  <div class="col-8">
-                    <p class="card-title"><%= car.model %><p>
-                    <p class="card-address">📍 <%= car.address %><p>
-                  </div>
-                  <div class="col-4">
-                    <p class="card-price">
-                      <strong>$<%= car.price %></strong>
-                      per day
-                    </p>
+                <%= cl_image_tag(car.photos[0].key, class:"card-image", height: 300, width: 400, crop: :fit) if car.photos.present?%>
+                <div class="card-content">
+                  <div class="row">
+                    <div class="card-title col-8">
+                      <h2><%= car.model %></h2>
+                      <p class="card-address">📍 <%= car.address %><p>
+                    </div>
+                    <div class="col-4">
+                      <p class="card-price">
+                        <strong>$<%= car.price %></strong>
+                        per day
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
