@@ -1,58 +1,59 @@
-<body>
-  <div class="row text-center mt-4">
-    <div class="col-md-12">
-      <h1>My Owner's Dashboard</h1>
-    </div>
+<div class="row text-center mt-4">
+  <div class="col-md-12">
+    <h1>My Owner's Dashboard</h1>
   </div>
-  <div class="row m-2">
-    <% @cars.each do |car| %>
-    <div class="col-4">
-      <div class="card mb-4">
-        <%= cl_image_tag(car.photos[0].key, class: "card-image rounded") if car.photos.present? %>
-        <div class="card-content">
-          <div class="row">
-            <div class="card-title col-8">
-              <h2><%= car.model %></h2>
-              <p class="card-address">📍 <%= car.address %></p>
-            </div>
-            <div class="col-4">
-              <p class="card-price">
-                <strong>$<%= car.price %></strong>
-                per day
-              </p>
-            </div>
-          </div>
-        </div>
-        <% @received_bookings.each do |booking| %>
-        <% if policy(booking).approve? && booking.car == car %>
-        <div class="card mb-3">
-          <div class="card-content">
-            <h2>Next bookings</h2>
-            <p><strong>From:</strong> <%= booking.start_date.strftime("%b %d, %Y") %></p>
-            <p><strong>To:</strong> <%= booking.end_date.strftime("%b %d, %Y") %></p>
-            <p><strong>Total Price:</strong> $<%= booking.car.price %></p>
-            <% if booking.confirmed %>
-            <p>
-              <strong>Confirmed</strong>
-              <i class="fas fa-check-square confirm-icon"></i>
-            </p>
-            <% end %>
-            <% unless booking.confirmed %>
-            <div class="text-center">
-              <%= link_to 'Confirm Booking', approve_booking_path(booking), class: "btn btn-primary btn-confirm", data: { turbo_method: :post } %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
-  </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
+</div>
 
-</html>
+<div class="row m-2">
+  <% @cars.each do |car| %>
+    <div class="col-6">
+      <a href="<%= show_my_car_url(car) %>" class="card-link">
+        <div class="card mb-4">
+          <%= cl_image_tag(car.photos[0].key, class: "card-image rounded") if car.photos.present? %>
+          <div class="card-content">
+            <div class="row">
+              <div class="card-title col-8">
+                <h2><%= car.model %></h2>
+                <p class="card-address">📍 <%= car.address %></p>
+              </div>
+              <div class="col-4">
+                <p class="card-price">
+                  <strong>$<%= car.price %></strong>
+                  per day
+                </p>
+              </div>
+            </div>
+            <h3 class="text-center m-2">Next Bookings</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Confirmation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @received_bookings.each do |booking| %>
+                <% if policy(booking).approve? && booking.car == car %>
+                <% user = User.find(booking.user_id) %>
+                <tr>
+                  <td><%= user.first_name %> <%= user.last_name %></td>
+                  <td><%= booking.start_date.strftime("%b %d, %Y") %></td>
+                  <td><%= booking.end_date.strftime("%b %d, %Y") %></td>
+                  <% if booking.confirmed %>
+                    <td>Confirmed <i class="fas fa-check-square confirm-icon"></i></td>
+                  <% else %>
+                    <td>Awaiting Confirmation <i class="fas fa-check-square confirm-icon"></i></td>
+                  <% end %>
+                </tr>
+                <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>
